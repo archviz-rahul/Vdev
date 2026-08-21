@@ -1,0 +1,219 @@
+﻿VIZTR PROMPT 03 — HOMEPAGE PART 2 + ALL 21 PAGES
+===================================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+================================================
+
+SYSTEM: You are building the VizTR Architecture Visualization Studio + XR World Platform. This is Prompt 03 of 10. You have completed the foundation (Prompt 01) and homepage sections 1-8 (Prompt 02). Now build homepage sections 9-16 and all 21 required pages.
+
+
+ASSIGNMENT
+----------
+1. Build homepage sections 9 through 16
+2. Create all 21 required pages with placeholder content
+3. All content must be editable from admin
+
+
+HOMEPAGE SECTIONS 9-16
+-----------------------
+
+SECTION 9 — TRACK PROJECT
+Component: TrackProjectSection.tsx
+Layout: Heading Track Your Project, subheading, form with Project ID + Access Code fields, Track button, result timeline placeholder
+Style: Glass effect card, max width 600px centered
+
+SECTION 10 — BENEFITS
+Component: BenefitsSection.tsx
+Layout: Heading Why VizTR, 7 benefit items in grid (4/2/1), each with icon + title + description
+Benefits: Premium Visual Presentation, Faster Client Approvals, No Hardware Dependency, Real-time Immersive Interaction, Improved Property Marketing, Stronger Buyer Confidence, Scalable Digital Delivery
+
+SECTION 11 — HOW IT WORKS
+Component: HowItWorksSection.tsx
+Layout: Heading How It Works, 4 steps horizontal timeline (desktop) / vertical (mobile)
+Steps: 1. Share Your Requirements, 2. We Create, 3. Review and Collaborate, 4. Deliver and Track
+
+SECTION 12 — USE CASES
+Component: UseCasesSection.tsx
+Layout: Heading Built For Your Industry, 5 audience cards with Problem/Solution/Benefit
+Audiences: Real Estate Developers, Architects, Interior Designers, Property Marketers, Enterprise Clients
+
+SECTION 13 — TESTIMONIALS
+Component: TestimonialsSection.tsx
+Layout: Heading What Clients Say, 3 testimonial cards, stats row (200+ Projects, 50+ Clients, 15+ Countries, 99% Satisfaction)
+Each: quote, client name, role/company, 5 star rating
+
+SECTION 14 — FAQ
+Component: FAQSection.tsx
+Layout: Heading Frequently Asked Questions, 8 accordion items
+Topics: architectural visualization, WebXR, Pixel Streaming, VR hardware, project timeline, file formats, project tracking, getting started
+
+SECTION 15 — FINAL CTA
+Component: FinalCTASection.tsx
+Layout: Full width, dark gradient background, Heading Ready to Transform Your Vision?, subheading, Primary CTA Start Your Project, Secondary Book Consultation, Tertiary Request Demo
+
+ALL 21 REQUIRED PAGES
+----------------------
+Create these page directories under apps/web/src/app/:
+
+1.  / (Homepage) — already built in Prompt 02
+2.  /studio — Studio Overview page
+3.  /studio/exterior — Exterior Visualization service page
+4.  /studio/interior — Interior Visualization service page
+5.  /studio/walkthrough — Walkthrough Animation service page
+6.  /xr-world — XR World Overview page
+7.  /xr-world/webxr — WebXR service page
+8.  /xr-world/webar — WebAR service page
+9.  /xr-world/virtual-reality — Virtual Reality service page
+10. /xr-world/virtual-tour — Virtual Tour service page
+11. /xr-world/pixel-streaming — Pixel Streaming service page (FLAGSHIP)
+12. /portfolio — Portfolio listing page
+13. /about — About page
+14. /blog — Blog listing page
+15. /blog/[slug] — Blog post template
+16. /contact — Contact page
+17. /book-consultation — Book Consultation page
+18. /client-access — Client Access login page
+19. /track-project — Track Project page
+20. /privacy-policy — Privacy Policy page
+21. /terms-conditions — Terms and Conditions page
+
+
+PAGE TEMPLATES
+--------------
+
+SERVICE PAGE TEMPLATE (for /studio/* and /xr-world/*):
+Each service page must include:
+  - Hero section with title and description
+  - Service description section
+  - Benefits section (3-5 benefits)
+  - Sample portfolio preview (2-3 related projects)
+  - Process section (3-4 steps)
+  - FAQ section (3-5 questions)
+  - CTA section
+
+STUDIO OVERVIEW (/studio):
+  - Hero: Architecture Visualization Studio
+  - Description of studio services
+  - 3 service cards linking to detail pages
+  - Portfolio preview filtered to studio projects
+  - CTA
+
+XR WORLD OVERVIEW (/xr-world):
+  - Hero: Immersive Technology Experiences
+  - Description of XR services
+  - 5 service cards linking to detail pages
+  - Experience preview
+  - CTA
+
+PIXEL STREAMING (/xr-world/pixel-streaming):
+  - Hero: Pixel Streaming with Flagship badge
+  - Cloud-rendered experience explanation
+  - High-quality real-time visuals description
+  - No heavy hardware requirement emphasis
+  - Launch Demo CTA (guarded — shows request form if not authorized)
+  - GPU usage monitoring note
+  - Technical requirements section
+
+PORTFOLIO (/portfolio):
+  - Filter buttons: All, Exterior, Interior, Animation, XR, 360, Walkthrough
+  - Project grid with cards
+  - Immersive gallery viewer support
+  - Project detail modal or page
+  - 360 badge for panoramic projects
+  - Video preview support
+
+ABOUT (/about):
+  - Hero with company name
+  - Company story section
+  - Vision and Mission statements
+  - Values (4-5 values)
+  - Team introduction placeholder
+  - Technology approach section
+  - CTA
+
+BLOG (/blog):
+  - Featured posts section
+  - Category filter
+  - Search bar
+  - Post grid with cards
+  - Pagination
+  - Each card: featured image, title, excerpt, author, date, category
+
+BLOG POST (/blog/[slug]):
+  - Title, featured image, author, publish date
+  - Category and tags
+  - Rich text content area
+  - Related posts section
+  - Social share buttons
+  - SEO metadata
+
+CONTACT (/contact):
+  - Contact form (Name, Email, Phone, Service interested in, Message, Consent checkbox)
+  - Email address
+  - Phone number
+  - Address
+  - Map placeholder
+  - Business hours
+  - Social links
+
+BOOK CONSULTATION (/book-consultation):
+  - Form: Name, Email, Phone, Company, Service selection, Preferred date, Preferred time, Project details, Budget range, Consent checkbox
+  - Admin approval logic placeholder
+  - Email notification placeholder
+
+CLIENT ACCESS (/client-access):
+  - Login form: Project ID + Password OR Email + Password
+  - Google login button
+  - Forgot access code link
+  - Redirect to client dashboard after login
+
+TRACK PROJECT (/track-project):
+  - Project ID input
+  - Access Code input
+  - Track button
+  - Timeline view placeholder
+  - Deliverables preview if authorized
+
+PRIVACY POLICY (/privacy-policy):
+  - Professional placeholder legal content
+  - Sections: Information Collection, Information Use, Data Sharing, Cookies, Data Security, Your Rights, Contact Us
+
+TERMS AND CONDITIONS (/terms-conditions):
+  - Professional placeholder legal content
+  - Sections: Acceptance of Terms, Services, Payment, Intellectual Property, Limitation of Liability, Contact
+
+
+LAYOUT SHARING
+--------------
+All pages share the same Header (from Prompt 01) and Footer (from Prompt 01).
+Each page has its own layout.tsx if needed, or uses the root layout.
+
+
+DATA FILES
+----------
+Create apps/web/src/data/pages.ts with typed content for all pages.
+Each page exports its content as a typed object.
+All text, images, links, and metadata must be in this file.
+
+
+VERIFICATION
+------------
+1. Run: pnpm dev
+2. Navigate to every page URL listed above
+3. Each page renders without error
+4. Header and footer appear on all pages
+5. Service pages have hero, description, benefits, FAQ, CTA
+6. Portfolio page shows filter buttons and grid
+7. Contact form has all required fields
+8. Book Consultation form has all required fields
+9. Client Access page shows login form
+10. Track Project page shows input fields
+11. Privacy Policy and Terms pages have content
+12. All pages responsive at mobile
+13. No console errors
+14. TypeScript compiles without errors
+
+Push to GitHub when verification passes.
+
+
+END OF PROMPT 03

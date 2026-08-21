@@ -1,0 +1,382 @@
+﻿VIZTR PROMPT 02 — HOMEPAGE PART 1
+===================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+================================================
+
+SYSTEM: You are building the VizTR Architecture Visualization Studio + XR World Platform. This is Prompt 02 of 10. You have already completed the foundation (Prompt 01) with header, footer, theme engine, and design tokens. Now build the first 8 homepage sections. Build ONLY what is specified here. Do not modify the header or footer.
+
+
+ASSIGNMENT
+----------
+Build homepage sections 1 through 8 inside apps/web/src/app/page.tsx.
+Each section must be a separate component in apps/web/src/components/sections/.
+All content must be editable from admin (store in site_settings or pass as props from a data file).
+
+
+COMPONENT FILE STRUCTURE
+------------------------
+apps/web/src/components/sections/
+  HeroSection.tsx
+  MarqueeSection.tsx
+  ServiceCategories.tsx
+  StudioPreview.tsx
+  XRPreview.tsx
+  ShowreelSection.tsx
+  PortfolioPreview.tsx
+  XRExperienceSection.tsx
+
+apps/web/src/data/
+  homepage.ts              All homepage content as typed data
+
+
+SECTION 1 — HERO
+-----------------
+Component: HeroSection.tsx
+
+Layout:
+  - Full viewport height (100vh)
+  - Background: architectural still image as slideshow or single cinematic image
+  - Dark overlay: bg-black/40
+  - Content centered vertically and horizontally
+  - Max width: 900px centered
+
+Content:
+  - Headline: Where Architecture Meets Immersive Reality
+  - Sub-headline: Premium visualization, extended reality, and pixel-perfect delivery for architects, developers, and designers.
+  - Primary CTA button: Start Your Project -> /contact
+  - Secondary CTA button: Book Consultation -> /book-consultation
+  - Tertiary text link: Explore XR World -> /xr-world
+
+Style:
+  - Headline: Playfair Display, 3.5rem desktop / 2rem mobile, weight 700, white
+  - Sub-headline: Inter, 1.1rem, weight 400, white/80
+  - Buttons: primary filled (accent color), secondary outlined (white border)
+  - Text centered, animated fade-in on load (1s delay)
+
+Admin Editable:
+  - Hero images array (for slideshow)
+  - Headline text
+  - Sub-headline text
+  - All button labels and links
+  - Overlay opacity
+  - Slideshow speed
+
+
+SECTION 2 — MARQUEE
+--------------------
+Component: MarqueeSection.tsx
+
+Layout:
+  - Horizontal band, full width
+  - Background: theme primary color
+  - Padding: 1rem vertical
+  - Overflow hidden
+
+Content (scrolling right to left, infinite loop):
+  EXTERIOR   INTERIOR   WALKTHROUGH   WebXR   WebAR   Virtual Reality   Virtual Tour   Pixel Streaming
+  Separated by diamond or dot character
+
+Style:
+  - Font: Inter, weight 600, size 0.85rem
+  - Letter spacing: 0.15em
+  - Uppercase: YES
+  - Color: white (or theme inverse)
+  - Animation: linear, 30s duration, infinite
+  - Duplicate content 3x for seamless loop
+
+Admin Editable:
+  - Marquee items array
+  - Animation speed
+  - Background color
+  - Visibility toggle
+
+
+SECTION 3 — SERVICE CATEGORIES
+-------------------------------
+Component: ServiceCategories.tsx
+
+Layout:
+  - Two side-by-side cards on desktop (50/50)
+  - Stacked on mobile
+  - Max width: 1280px centered
+  - Padding: 6rem vertical
+
+Card 1 — STUDIO:
+  - Title: Studio
+  - Subtitle: Architecture Visualization Studio
+  - Description: Photorealistic renders, cinematic walkthroughs, and detailed visual narratives for architectural projects.
+  - Image: architectural render placeholder
+  - CTA: Explore Studio -> /studio
+  - Services listed: Exterior Visualization, Interior Visualization, Walkthrough
+  - Background: theme card background
+  - Border radius: 16px
+
+Card 2 — XR WORLD:
+  - Title: XR World
+  - Subtitle: Immersive Technology Experiences
+  - Description: WebXR, WebAR, VR, virtual tours, and pixel streaming — no hardware required for web experiences.
+  - Image: XR experience placeholder
+  - CTA: Explore XR World -> /xr-world
+  - Services listed: WebXR, WebAR, Virtual Reality, Virtual Tour, Pixel Streaming
+  - Background: accent color gradient
+  - Border radius: 16px
+
+Style:
+  - Cards have hover scale effect (1.02)
+  - Image: aspect-ratio 16/9, object-cover, border-radius top
+  - Text padding: 2rem
+  - Service list: checkmark icons, small text
+
+Admin Editable:
+  - All text content
+  - Images
+  - Links
+  - Background colors
+  - Service lists
+
+
+SECTION 4 — STUDIO SERVICES PREVIEW
+-------------------------------------
+Component: StudioPreview.tsx
+
+Layout:
+  - Section heading: Studio Services
+  - Subheading: Bringing architectural visions to life through precision visualization
+  - 3 cards in a row (desktop), stacked (mobile)
+  - Max width: 1280px centered
+
+Card 1 — Exterior Visualization:
+  - Thumbnail image
+  - Title: Exterior Visualization
+  - Description: Photorealistic exterior renders that showcase architectural form, materials, and environment.
+  - CTA: View Service -> /studio/exterior
+  - Category tag: Studio
+
+Card 2 — Interior Visualization:
+  - Thumbnail image
+  - Title: Interior Visualization
+  - Description: Detailed interior scenes with accurate lighting, materials, and spatial composition.
+  - CTA: View Service -> /studio/interior
+  - Category tag: Studio
+
+Card 3 — Walkthrough:
+  - Thumbnail image
+  - Title: Walkthrough Animation
+  - Description: Cinematic flythrough animations that bring architectural spaces to life.
+  - CTA: View Service -> /studio/walkthrough
+  - Category tag: Studio
+
+Style:
+  - Cards: rounded-2xl, overflow-hidden, shadow-lg
+  - Image: aspect-ratio 16/9, hover zoom effect
+  - Title: Playfair Display, 1.25rem
+  - Description: Inter, 0.9rem, text-secondary
+  - Tag: small pill badge, primary color background
+
+Admin Editable:
+  - All text, images, links, category tags
+
+
+SECTION 5 — XR WORLD SERVICES PREVIEW
+---------------------------------------
+Component: XRPreview.tsx
+
+Layout:
+  - Section heading: XR World Services
+  - Subheading: Immersive experiences built for the browser — no downloads required
+  - 5 cards in a grid (3 desktop, 2 tablet, 1 mobile)
+  - Max width: 1280px centered
+
+Cards:
+  1. WebXR — Extended Reality — Immersive 3D experiences accessible through any web browser.
+  2. WebAR — Augmented Reality — Place virtual objects in your real world using your phone camera.
+  3. Virtual Reality — Full Immersion — Complete VR experiences for headsets and browsers.
+  4. Virtual Tour — 360 Exploration — Interactive panoramic tours with hotspots and navigation.
+  5. Pixel Streaming — FLAGSHIP — Cloud-rendered real-time experiences streamed to any device.
+
+Pixel Streaming card must be visually distinct:
+  - Larger card or different background
+  - Flagship badge
+  - Launch Demo CTA (guarded — requires auth or request)
+
+Style:
+  - Cards: rounded-2xl, hover lift effect
+  - Icon or image per card
+  - Pixel Streaming card: gradient border or glow effect
+
+Admin Editable:
+  - All text, icons, links
+  - Flagship designation
+
+
+SECTION 6 — SHOWREEL
+---------------------
+Component: ShowreelSection.tsx
+
+Layout:
+  - Full width, near full screen (80vh)
+  - Video background or poster image with play button
+  - Dark overlay
+  - Centered content
+
+Content:
+  - Heading: VizTR Showreel
+  - Subheading: Watch our work in motion
+  - CTA: View Portfolio -> /portfolio
+
+Video:
+  - Poster image (architectural cinematic shot)
+  - Play/pause controls (custom styled)
+  - Autoplay muted on view, unmute on click
+  - Lazy loaded
+  - Preload: poster only, video on interaction
+
+Style:
+  - Heading: Playfair Display, 2.5rem, white
+  - Controls: glass effect buttons
+  - Overlay: bg-black/50
+
+Admin Editable:
+  - Video URL
+  - Poster image
+  - Heading and subheading
+  - Visibility toggle
+
+
+SECTION 7 — PORTFOLIO PREVIEW
+-------------------------------
+Component: PortfolioPreview.tsx
+
+Layout:
+  - Section heading: Our Work
+  - Subheading: Selected projects from our portfolio
+  - Filter buttons row: All | Exterior | Interior | Animation
+  - Grid of project cards (3 columns desktop, 2 tablet, 1 mobile)
+  - Browse More button at bottom right -> /portfolio
+
+Card content:
+  - Project thumbnail (aspect-ratio 4/3)
+  - Hover: overlay with View Project text
+  - Project title below image
+  - Category tag (small pill)
+  - Optional: location or client name in small text
+
+Filter behavior:
+  - Click filter button to show/hide cards
+  - All shows everything
+  - Active filter: filled background
+  - Animation: fade transition on filter change
+
+Style:
+  - Grid gap: 1.5rem
+  - Cards: rounded-xl, overflow-hidden
+  - Hover: scale(1.03) on image
+  - Filter buttons: pill shape, border, active filled
+
+Admin Editable:
+  - Portfolio items (from portfolio collection)
+  - Filter categories
+  - Default filter on load
+
+
+SECTION 8 — XR WORLD EXPERIENCE
+---------------------------------
+Component: XRExperienceSection.tsx
+
+Layout:
+  - Section heading: Experience the Future
+  - Subheading: Interactive XR demos — try them in your browser
+  - 4 cards in a row (desktop), 2x2 (tablet), stacked (mobile)
+  - Max width: 1280px centered
+
+Cards:
+  1. WebAR — Place 3D models in your space — CTA: View Sample -> /xr-world/webar
+  2. WebXR — Immersive 3D in your browser — CTA: Launch Demo -> /xr-world/webxr
+  3. VR — Full virtual reality experience — CTA: Request Access -> /xr-world/virtual-reality
+  4. Virtual Tour — 360 degree property tour — CTA: Explore Tour -> /xr-world/virtual-tour
+
+Style:
+  - Cards: dark background with gradient
+  - Each card: icon/image, title, short description, CTA button
+  - Hover: subtle glow or lift
+  - Border radius: 16px
+
+Admin Editable:
+  - All text, icons, links
+  - Media per card
+
+
+HOMEPAGE DATA FILE
+------------------
+Create apps/web/src/data/homepage.ts with typed content:
+
+export interface HeroContent {
+  images: string[];
+  headline: string;
+  subheadline: string;
+  primaryCTA: { label: string; href: string };
+  secondaryCTA: { label: string; href: string };
+  tertiaryCTA: { label: string; href: string };
+  overlayOpacity: number;
+}
+
+export interface MarqueeContent {
+  items: string[];
+  speed: number;
+  backgroundColor: string;
+  visible: boolean;
+}
+
+// ... define interfaces for all sections
+
+export const homepageData = {
+  hero: { /* default values */ },
+  marquee: { /* default values */ },
+  // ... all sections
+};
+
+
+PAGE STRUCTURE
+--------------
+apps/web/src/app/page.tsx should render:
+
+export default function HomePage() {
+  return (
+    <main>
+      <HeroSection />
+      <MarqueeSection />
+      <ServiceCategories />
+      <StudioPreview />
+      <XRPreview />
+      <ShowreelSection />
+      <PortfolioPreview />
+      <XRExperienceSection />
+    </main>
+  );
+}
+
+Each section component imports its data from homepage.ts.
+
+
+VERIFICATION
+------------
+1. Run: pnpm dev
+2. Open http://localhost:3000
+3. Hero section renders with headline, subheadline, 3 CTAs
+4. Marquee scrolls continuously with correct items
+5. Service Categories shows 2 cards side by side
+6. Studio Preview shows 3 service cards
+7. XR Preview shows 5 service cards with Pixel Streaming highlighted
+8. Showreel section renders with play button
+9. Portfolio Preview shows filter buttons and project grid
+10. XR Experience shows 4 interactive cards
+11. All sections responsive at mobile (375px)
+12. Theme toggle affects all sections
+13. No console errors
+14. TypeScript compiles without errors
+
+Push to GitHub when verification passes.
+
+
+END OF PROMPT 02

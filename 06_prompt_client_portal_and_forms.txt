@@ -1,0 +1,140 @@
+VIZTR PROMPT 06 — CLIENT PORTAL AND FORMS
+==========================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+
+SYSTEM: You are building VizTR. This is Prompt 06 of 10. Build the client login portal, project tracking system, and all forms.
+
+
+ASSIGNMENT
+1. Build client login portal with authentication
+2. Build client dashboard with project views
+3. Build project tracking system with public quick-check
+4. Build all 6 form types with validation
+
+
+CLIENT LOGIN PORTAL
+-------------------
+File: apps/client-portal/src/app/client-access/page.tsx
+
+Login form with two tabs:
+  Tab 1 — Project ID Login:
+    - Project ID input (required)
+    - Password input (required)
+    - Track button
+  Tab 2 — Email Login:
+    - Email input (required)
+    - Password input (required)
+    - Login button
+
+Below tabs:
+  - Google login button
+  - Forgot access code link (sends to admin)
+
+After login: redirect to /client-dashboard
+
+Client dashboard: /client-dashboard
+  - Welcome message with client name
+  - Assigned project list (cards)
+  - Each card: name, status badge, progress bar, last update
+  - Click project -> detail view
+  - Detail: timeline, deliverables, XR demo launcher, Pixel Streaming launcher, download center, feedback form
+  - No admin controls, no billing, no settings
+
+Shared access: /client-view/[accessCode]
+  - Public URL, no login required
+  - Shows project view with access code validation
+  - View-only, no edit actions
+
+
+PROJECT TRACKING
+----------------
+File: apps/web/src/components/tracking/ProjectTracker.tsx
+
+Public quick tracking:
+  - Project ID input
+  - Access Code input
+  - Track button
+  - Result: timeline view
+
+Timeline view (7 stages):
+  1. Brief Received
+  2. In Production
+  3. Draft Ready
+  4. Client Review
+  5. Revisions
+  6. Final Delivery
+  7. Completed
+
+Current stage: highlighted with accent color
+Completed: checkmark, green
+Pending: gray
+Each stage: title, date if reached, optional note
+
+
+FORM 1 — CONTACT
+-----------------
+File: apps/web/src/components/forms/ContactForm.tsx
+Page: /contact
+Fields: Name (req), Email (req), Phone, Service select (Exterior/Interior/Walkthrough/WebXR/WebAR/VR/Virtual Tour/Pixel Streaming/Other), Message (req), Consent checkbox (req)
+Submit: POST /api/forms/contact
+Validation: zod schema
+
+FORM 2 — BOOK CONSULTATION
+---------------------------
+File: apps/web/src/components/forms/BookingForm.tsx
+Page: /book-consultation
+Fields: Name (req), Email (req), Phone (req), Company, Service selection (req), Preferred date (req, must be future), Preferred time (req), Project details (req), Budget range (Under 5K/5K-15K/15K-50K/50K-100K/100K+), Consent checkbox (req)
+Submit: POST /api/forms/booking
+
+FORM 3 — REQUEST DEMO
+----------------------
+File: apps/web/src/components/forms/DemoRequestForm.tsx
+Page: /xr-world/pixel-streaming (Launch Demo CTA)
+Fields: Name (req), Email (req), Company, Use case (Architecture/Real Estate/Interior Design/Other), Message, Consent checkbox (req)
+Submit: POST /api/forms/demo
+
+FORM 4 — PROJECT INQUIRY
+-------------------------
+File: apps/web/src/components/forms/InquiryForm.tsx
+Page: Portfolio detail (Enquire button)
+Fields: Name (req), Email (req), Project reference (auto-filled), Service type (select), Message (req), Consent checkbox (req)
+Submit: POST /api/forms/inquiry
+
+FORM 5 — NEWSLETTER
+--------------------
+File: apps/web/src/components/forms/NewsletterForm.tsx
+Location: Footer inline
+Fields: Email (req)
+Submit: POST /api/forms/newsletter
+Success: "Thank you for subscribing!"
+
+FORM 6 — PORTFOLIO ENQUIRY
+---------------------------
+File: apps/web/src/components/forms/PortfolioEnquiryForm.tsx
+Page: /portfolio (floating button)
+Fields: Name (req), Email (req), Phone, Interested in (Exterior/Interior/Animation/XR/360/Walkthrough/Multiple), Message (req), Consent checkbox (req)
+Submit: POST /api/forms/portfolio-enquiry
+
+
+FORM API ROUTES
+---------------
+apps/web/src/api/forms/[type]/route.ts
+Each form type: validate with zod, store in FormSubmission model, email notification placeholder, return success/error
+
+Spam protection: honeypot hidden field, rate limiting (5 per IP per hour)
+
+
+VERIFICATION
+1. Client Access shows login with 2 tabs
+2. Client Dashboard shows project list
+3. /client-view/test-code renders shared view
+4. Track Project shows inputs and 7-stage timeline
+5. Contact form validates required fields
+6. Booking form validates future date
+7. Newsletter inline in footer
+8. All forms show success/error messages
+9. No console errors
+10. TypeScript compiles
+
+END OF PROMPT 06

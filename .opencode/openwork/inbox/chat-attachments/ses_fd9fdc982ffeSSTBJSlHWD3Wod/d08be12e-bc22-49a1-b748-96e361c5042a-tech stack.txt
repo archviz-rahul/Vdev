@@ -1,0 +1,43 @@
+High-Performance Tech Selection Table
+Category
+Selected Technology
+Performance & Speed Rationale (From Document)
+Frontend Framework
+Next.js 16.2 (App Router)
+Provides SSR/SSG for SEO and server components for performance. Ensures fast initial load. (Explicitly chosen over Vite due to lack of SSR, and Astro due to limited 3D interactivity).
+Styling Engine
+Tailwind CSS 4.0+
+Described as a "high-performance CSS engine" with CSS-first config and design token integration, minimizing CSS bundle size.
+Typography
+next/font (self-hosted)
+Guarantees zero layout shift (CLS), subset optimization, and privacy compliance, preventing render-blocking font downloads.
+Data Fetching
+TanStack Query 5.56+
+Handles server state with caching, deduplication, and optimistic updates, reducing redundant network requests and making the UI feel instantly responsive.
+Client State
+Zustand 4.5+
+Chosen for minimal boilerplate and fast, lightweight UI state management (e.g., sidebars, filters) without the overhead of Redux.
+Hosting & Edge
+Vercel
+Provides a global edge network, zero-config deployment, and preview deploys, ensuring content is served from locations closest to the user.
+CDN & Asset Delivery
+Cloudflare (CDN + R2)
+Delivers global CDN caching and DDoS protection. Cloudflare R2 ensures no egress fees and fast delivery of heavy 3D/video assets.
+Caching Layer
+Redis 7+
+Provides in-memory, sub-ms latency for API responses, user sessions, and feature flags, drastically reducing database load.
+Background Processing
+BullMQ 5.15+
+Offloads heavy compute tasks (asset optimization, XR generation, video transcoding) to background queues, keeping the main API thread fast and responsive.
+XR / 3D Engine
+Babylon.js 8+
+Selected over Three.js+R3F to avoid "GPU/bundle/mental-model conflicts". Features a performance-friendly post-processing pipeline and native WebXR support.
+360° Tour Viewer
+Marzipano
+A lightweight, Apache 2.0 carve-out specifically for equirectangular panorama layers, ensuring fast tour loading without overloading the main 3D engine.
+AI Inference Speed
+Groq (via OmniRoute)
+Specifically selected for low-latency inference, utilizing LPU-powered hardware to achieve sub-100ms latency for AI agent responses.
+Performance Monitoring
+Vercel Analytics + Custom XR Overlay
+Tracks Core Web Vitals natively. Enforces strict performance budgets: Load time <2s (desktop) / <3s (mobile); FPS targets of 60 (desktop) / 90 (VR).

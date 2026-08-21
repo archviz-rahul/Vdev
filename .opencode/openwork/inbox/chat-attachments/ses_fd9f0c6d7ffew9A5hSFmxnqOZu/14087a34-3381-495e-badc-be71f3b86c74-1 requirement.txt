@@ -1,0 +1,1382 @@
+VIZTR MASTER BUILD PROMPT
+
+SYSTEM INSTRUCTION
+
+Act as a senior full-stack website builder, UI/UX designer, CMS architect, SaaS product strategist, growth marketer, SEO specialist, accessibility specialist, and no-code systems expert.
+
+Build a complete, production-ready, scalable, high-converting website and admin platform for VizTR.
+
+The result must include:
+- Public frontend
+- Backend logic
+- Database structure
+- CMS
+- Admin dashboard
+- Client portal
+- Live visual editor
+- Theme engine
+- Media management system
+- SEO system
+- Form and booking system
+- Project tracking system
+- Immersive media modules
+- WebXR-ready modules
+- Pixel Streaming-ready modules
+- Role-based access control
+- Analytics-ready structure
+
+Do not ask follow-up questions unless absolutely required.
+Proceed with best-practice assumptions.
+Add missing best-practice features automatically.
+Preserve a modular, enterprise-grade, scalable architecture.
+
+WEBSITE OVERVIEW
+
+Website Name: VizTR
+Full Name: Visual Tech Reality
+Website Type: Architecture Visualization Studio + XR World Platform
+Primary Goal: Showcase premium architectural visualization work, generate high-value leads, and deliver immersive XR experiences.
+Target Audience: Real estate developers, architects, interior designers, property marketers, luxury real estate brands, and enterprise clients.
+Brand Tone: Modern, luxury, futuristic, cinematic, minimal, high-tech, premium.
+Theme Modes: Light, Dark, System.
+Color System: Editable from admin placeholders.
+Social Links: Editable from admin placeholders.
+Contact Details: Editable from admin placeholders.
+Pages: Editable from admin placeholders.
+
+CORE PRODUCT POSITIONING
+
+VizTR has two main service divisions:
+
+1. STUDIO
+Architecture Visualization Studio services:
+- Exterior Visualization
+- Interior Visualization
+- Walkthrough Animation
+
+2. XR WORLD
+Immersive technology services:
+- WebXR
+- WebAR
+- Virtual Reality
+- Virtual Tour
+- Pixel Streaming
+
+Pixel Streaming must be positioned as a powerful flagship VizTR service.
+
+GLOBAL BUILD RULES
+
+Build the system so that:
+- All public content is editable from the admin dashboard.
+- All placeholder content is pre-filled and ready for immediate publishing.
+- The website is fully responsive on mobile, tablet, and desktop.
+- The design is clean, premium, fast, and conversion-optimized.
+- The admin dashboard is intuitive for non-technical users.
+- The system supports role-based access for Super Admin, Admin, User, and Client.
+- Every page, post, service, project, package, image, video, 3D model, panorama, menu, theme, color, font, SEO field, and social link is editable from admin.
+- The system includes clear empty states, loading states, error states, and success states.
+- The system includes secure authentication, authorization, validation, and protected routes.
+- The system includes scalable content architecture and reusable components.
+- The system includes best-practice SEO, accessibility, performance, and analytics foundations.
+
+FRONTEND REQUIREMENTS
+
+Build a high-converting, visually immersive public website.
+
+The public website must include:
+- Homepage
+- Studio services pages
+- XR World service pages
+- Portfolio page
+- About page
+- Blog page
+- Blog post template
+- Contact page
+- Book Consultation page
+- Client Access page
+- Track Project page or section
+- Privacy Policy page
+- Terms and Conditions page
+- 404 page
+- Search results page if blog/search is included
+
+HOMEPAGE SECTION ORDER
+
+Build the homepage in the following sequence:
+
+1. Hero Section
+- Use architectural still images as a premium slideshow or cinematic background.
+- Include a strong value proposition headline.
+- Include a supporting sub-headline.
+- Include primary CTA: Start Your Project.
+- Include secondary CTA: Book Consultation.
+- Include optional tertiary CTA: Explore XR World.
+- Make hero text, images, buttons, overlay, animation, and visibility editable from admin.
+
+2. Horizontal Brand Animation Marquee
+- Create a horizontal marquee band moving from right to left.
+- Include these items in the marquee:
+  EXTERIOR
+  INTERIOR
+  WALKTHROUGH
+  WebXR
+  WebAR
+  Virtual Reality
+  Virtual Tour
+  Pixel Streaming
+- Make marquee items, speed, visibility, and animation editable from admin.
+
+3. Main Service Categories
+Create two primary category blocks:
+
+STUDIO
+Subtitle: Architecture Visualization Studio
+Services:
+1. Exterior Visualization
+2. Interior Visualization
+3. Walkthrough
+
+XR WORLD
+Subtitle: Immersive Technology Experiences
+Services:
+1. WebXR
+2. WebAR
+3. Virtual Reality
+4. Virtual Tour
+5. Pixel Streaming
+
+Each category block must include:
+- Title
+- Description
+- Image or video preview
+- CTA button
+- Admin-editable content
+
+4. Studio Services Preview
+Display Studio services as premium cards or visual panels:
+- Exterior Visualization
+- Interior Visualization
+- Walkthrough
+
+Each service item must include:
+- Thumbnail or video preview
+- Short description
+- CTA
+- Category tag
+- Link to service detail page
+
+5. XR World Services Preview
+Display XR World services as interactive cards:
+- WebXR - Extended Reality
+- WebAR - Augmented Reality
+- Virtual Reality
+- Virtual Tour
+- Pixel Streaming
+
+Highlight Pixel Streaming as a flagship service.
+Include a live demo CTA where appropriate.
+Make each XR card editable from admin.
+
+6. Full-Screen Showreel Section
+Create a full-screen or near full-screen showreel section.
+- Use video format.
+- Include play/pause controls.
+- Include poster image.
+- Include heading: VizTR Showreel.
+- Include optional CTA: View Portfolio.
+- Optimize video loading with preload strategy and lazy loading.
+- Make video, poster, heading, text, and visibility editable from admin.
+
+7. Portfolio Preview Section
+Create a portfolio preview with category filter buttons:
+- All
+- Exterior
+- Interior
+- Animation
+
+Include:
+- Project thumbnails
+- Hover effects
+- Project title
+- Category tag
+- Optional location or client name
+- Browse More button
+
+The Browse More button must redirect to the full Portfolio page.
+
+On the full Portfolio page:
+- Show all projects.
+- Allow filtering by category.
+- Include categories such as Exterior, Interior, Animation, XR, 360, and Walkthrough if available.
+- Support immersive gallery viewer.
+- Support 360 badge for panoramic projects.
+- Support video previews.
+- Support WebXR or 3D previews if assigned.
+
+8. XR World Experience Section
+Create an immersive section for:
+- WebAR - Augmented Reality
+- WebXR - Extended Reality
+- VR - Virtual Reality
+- VT - Virtual Tour
+
+Include:
+- Short benefit-focused descriptions
+- Interactive preview placeholders
+- CTA buttons such as Launch Demo, View Sample, or Request Access
+- Admin-editable media and links
+
+9. Track Project Section
+Create a project tracking section on the homepage.
+Include:
+- Heading: Track Your Project
+- Short text explaining real-time project updates
+- Project ID input field
+- Optional password or access code field
+- Track button
+- Secure result view showing project status timeline
+
+The client must be able to receive real-time updates on the website through project tracking.
+
+10. Benefits Section
+Show outcome-focused benefits:
+- Premium visual presentation
+- Faster client approvals
+- No hardware dependency for web-based XR
+- Real-time immersive interaction
+- Improved property marketing
+- Stronger buyer confidence
+- Scalable digital delivery
+
+11. How It Works Section
+Create a step-based process:
+Step 1: Share your project requirements.
+Step 2: VizTR creates visuals or immersive experience.
+Step 3: Review and collaborate in real time.
+Step 4: Deliver, present, and track the project.
+
+Make steps editable from admin.
+
+12. Use Cases by Audience
+Create audience-specific sections:
+- Real Estate Developers
+- Architects
+- Interior Designers
+- Property Marketers
+- Enterprise Clients
+
+Each use case should include:
+- Audience title
+- Problem
+- VizTR solution
+- Benefit
+- CTA
+
+13. Testimonials and Trust Indicators
+Include:
+- Client testimonials
+- Project count stats
+- Client logos if available
+- Service badges
+- Technology badges
+- Trust statements
+
+All testimonials and stats must be editable from admin.
+
+14. FAQ Section
+Include frequently asked questions about:
+- Architectural visualization
+- XR experiences
+- WebXR
+- WebAR
+- Virtual tours
+- Pixel Streaming
+- Project tracking
+- Pricing
+- Delivery timeline
+- File formats
+- Support
+
+FAQs must be editable from admin.
+
+15. Final Conversion CTA Section
+Include a strong closing CTA:
+- Headline
+- Supporting text
+- Primary CTA: Start Your Project
+- Secondary CTA: Book Consultation
+- Optional button: Request Demo
+
+16. Footer
+Footer must include:
+- VizTR logo
+- Short brand description
+- Studio navigation links
+- XR World navigation links
+- Page links
+- Blog links
+- Legal links
+- Contact information
+- Email address
+- Phone number
+- Address
+- Social media links
+- Copyright notice
+- Privacy Policy link
+- Terms link
+
+Footer content must be fully editable from admin.
+
+REQUIRED PAGES AND PLACEHOLDER CONTENT
+
+Generate pre-filled placeholder content for all pages.
+
+1. Home
+Include all homepage sections listed above.
+
+2. Studio Overview
+Describe VizTR Studio as an architectural visualization studio.
+Include links to Exterior, Interior, and Walkthrough services.
+
+3. Exterior Visualization Service Page
+Include:
+- Hero
+- Service description
+- Benefits
+- Sample portfolio preview
+- Process
+- FAQ
+- CTA
+
+4. Interior Visualization Service Page
+Include:
+- Hero
+- Service description
+- Benefits
+- Sample portfolio preview
+- Process
+- FAQ
+- CTA
+
+5. Walkthrough Service Page
+Include:
+- Hero
+- Service description
+- Benefits
+- Video preview
+- Process
+- FAQ
+- CTA
+
+6. XR World Overview
+Describe VizTR XR World as an immersive technology platform.
+Include links to:
+- WebXR
+- WebAR
+- Virtual Reality
+- Virtual Tour
+- Pixel Streaming
+
+7. WebXR Service Page
+Include:
+- Explanation of Extended Reality on the web
+- Browser-based experience
+- No hardware dependency where applicable
+- Sample viewer placeholder
+- CTA
+
+8. WebAR Service Page
+Include:
+- Explanation of browser-based augmented reality
+- Mobile camera placement use case
+- Demo placeholder
+- CTA
+
+9. Virtual Reality Service Page
+Include:
+- VR presentation use cases
+- Immersive property walkthroughs
+- Hardware notes
+- Demo placeholder
+- CTA
+
+10. Virtual Tour Service Page
+Include:
+- Interactive tour explanation
+- 360 panorama support
+- Hotspot support
+- CTA
+
+11. Pixel Streaming Service Page
+Position Pixel Streaming as a powerful VizTR service.
+Include:
+- Cloud-rendered experience explanation
+- High-quality real-time visuals
+- No heavy local hardware requirement
+- Session launch CTA
+- Admin-controlled demo access
+- GPU usage monitoring note for backend
+
+12. Portfolio
+Include:
+- Filter buttons: All, Exterior, Interior, Animation
+- Additional filters if useful: XR, 360, Walkthrough, Video
+- Project cards
+- Immersive gallery viewer
+- Project detail pages
+- Category tagging
+- Browse More behavior from homepage
+
+13. About
+Include:
+- Company story
+- Vision
+- Mission
+- Values
+- Team introduction placeholder
+- Technology approach
+- CTA
+
+14. Blog
+Include:
+- Blog listing
+- Categories
+- Tags
+- Featured posts
+- Search
+- Pagination
+- Blog post template
+
+15. Blog Post Template
+Include:
+- Title
+- Featured image
+- Author
+- Publish date
+- Category
+- Tags
+- Rich text content
+- Related posts
+- SEO fields
+- Social share buttons
+
+16. Contact
+Include:
+- Contact form
+- Email address
+- Phone number
+- Address
+- Map placeholder if appropriate
+- Business hours placeholder
+- Social links
+
+17. Book Consultation
+Include:
+- Service selection
+- Date selection
+- Time selection
+- Client details
+- Project details
+- Admin approval or auto-confirmation logic
+- Email notifications
+
+18. Client Access Page
+Include:
+- Login via Project ID and Password
+- Optional email login
+- Optional Google login
+- Redirect to Client Dashboard
+- Forgot access code flow placeholder
+
+19. Track Project Page
+Include:
+- Project ID input
+- Access code input
+- Real-time project status result
+- Timeline view
+- Deliverables preview if authorized
+- Link to Client Dashboard if full access is granted
+
+20. Privacy Policy
+Generate professional placeholder legal content.
+
+21. Terms and Conditions
+Generate professional placeholder legal content.
+
+BACKEND AND DATABASE REQUIREMENTS
+
+Create a modular backend structure.
+
+Database collections must include:
+- Users
+- Roles
+- Permissions
+- Projects
+- Project Updates
+- Project Assets
+- Clients
+- Services
+- Packages
+- Pricing Plans
+- Portfolio Items
+- Blog Posts
+- Categories
+- Tags
+- Pages
+- Custom Content Blocks
+- Testimonials
+- FAQs
+- Media Assets
+- 3D Models
+- Panoramic Images
+- XR Links
+- Pixel Streaming Sessions
+- Form Submissions
+- Bookings
+- Leads
+- Navigation Menus
+- Themes
+- Design Settings
+- SEO Settings
+- Analytics Events
+- Audit Logs
+- Notifications
+- Site Settings
+
+Each collection must support create, read, update, delete, publish, archive, and role-based access where relevant.
+
+AUTHENTICATION SYSTEM
+
+Include authentication with:
+- Email and password login
+- Google login integration
+- Forgot password flow
+- Secure session handling
+- Role-based access control
+- Protected admin routes
+- Protected client routes
+- Optional project-based access using Project ID and password
+
+ROLES AND ACCESS CONTROL
+
+Define four main roles:
+
+1. Super Admin
+Full access to:
+- All content
+- All users
+- All roles
+- All projects
+- All themes
+- All integrations
+- SEO settings
+- Analytics
+- Revenue tracking if billing is enabled
+- GPU usage monitoring
+- Feature toggles
+- System settings
+- Audit logs
+- Backup and restore settings
+
+2. Admin
+Access to:
+- Manage projects
+- Assign projects to users or clients
+- Upload assets
+- Manage blog posts
+- Manage pages
+- Manage portfolio
+- Manage services
+- Manage testimonials
+- Manage FAQs
+- Manage leads
+- Manage bookings
+- Manage media library
+- Monitor client activity
+- Limited theme and navigation controls
+- Cannot access super admin system settings unless granted
+
+3. User
+Internal team or editor role.
+Access to:
+- Assigned projects
+- Upload models and assets
+- Update project progress
+- Generate XR links
+- Manage assigned content
+- Manage assigned media
+- Cannot change global settings
+- Cannot manage billing or system configuration
+
+4. Client
+Limited access.
+Access to:
+- Assigned projects only
+- Project progress timeline
+- Deliverables
+- XR demos
+- Pixel Streaming demos if enabled
+- Download approved files
+- Submit feedback
+- View project messages
+- Cannot access admin or editing tools
+
+Ensure dashboard and module access is correctly mapped, secure, and logically distinct for each role.
+
+ADMIN DASHBOARD AND CMS
+
+Build a fully editable, user-friendly admin dashboard.
+
+The admin dashboard must be intuitive, non-technical, and designed for everyday business users with no coding experience.
+
+Admin dashboard modules must include:
+- Dashboard home
+- Page manager
+- Blog manager
+- Portfolio manager
+- Project manager
+- Service manager
+- Package manager
+- Pricing plan editor
+- Media library
+- Navigation editor
+- Theme engine
+- Design customization
+- SEO controls
+- Form submissions
+- Booking manager
+- Lead manager
+- User manager
+- Client manager
+- Role and permission manager
+- XR model manager
+- 360 image manager
+- Pixel Streaming manager
+- Analytics dashboard
+- Settings
+- Audit logs
+
+CMS REQUIREMENTS
+
+The CMS must allow admin users to:
+- Create, edit, delete, and publish pages
+- Create, edit, delete, and publish blog posts
+- Create, edit, delete, and publish product updates
+- Create, edit, delete, and publish changelogs
+- Create, edit, delete, and publish custom content types
+- Manage categories
+- Manage tags
+- Manage slugs
+- Manage publish status: draft or published
+- Schedule posts if possible
+- Assign featured images
+- Assign author
+- Manage rich text content
+- Embed media
+- Manage reusable content blocks
+
+All text, images, icons, videos, and media must be editable from admin.
+All placeholder content must be replaceable easily.
+
+LIVE WEBSITE EDITOR
+
+Include a real-time website editor with previews.
+
+The editor must include:
+- Live preview mode
+- Desktop preview
+- Tablet preview
+- Mobile preview
+- Draft mode
+- Published mode
+- Undo and redo
+- Version history if possible
+- Save and publish controls
+- Section visibility toggles
+- Section reordering
+- Drag-and-drop editing
+- Inline content editing
+
+LIVE PAGE BUILDER
+
+Include a live page builder with:
+- Drag-and-drop sections
+- Move text blocks
+- Move buttons
+- Move images
+- Move videos
+- Move forms
+- Move portfolio items
+- Move service cards
+- Move custom blocks
+- Add new sections
+- Duplicate sections
+- Delete sections
+- Reorder sections
+- Toggle sections on/off
+- Edit section background
+- Edit section padding and margin
+- Edit container width
+- Edit alignment
+- Edit overlay
+- Edit border radius
+- Edit shadow
+- Edit glass effect if enabled
+
+ANIMATION EDITOR
+
+The page builder must allow animation controls for:
+- Text
+- Buttons
+- Images
+- Videos
+- Cards
+- Sections
+
+Animation options should include:
+- Fade
+- Slide
+- Zoom
+- Blur reveal
+- Parallax
+- Marquee
+- Staggered entry
+- Hover animation
+- Scroll-triggered animation
+- Animation delay
+- Animation duration
+- Animation easing
+- Animation trigger
+
+LIVE TEXT EDITOR
+
+The text editor must support:
+- Font family selection
+- Font size control
+- Font weight control
+- Font color control
+- Line height control
+- Letter spacing control
+- Bold
+- Italic
+- Underline
+- Hyperlink creation
+- Button label editing
+- Button URL creation
+- Open link in new tab
+- Text alignment
+- Text animation
+- Responsive text sizing
+- Heading level selection
+
+THEME ENGINE
+
+Build a multi-template theme engine.
+
+Include:
+- 10 full website templates
+- Light mode
+- Dark mode
+- System mode
+- CSS variables for brand colors
+- Backend-switchable full layout themes
+- Full structural theme change including layout, typography, and UI system
+- One-click global template switch from admin
+- Theme preview system in admin panel
+- Live preview before publish
+- Per-template layout configuration
+
+Suggested template styles:
+1. Luxury Dark
+2. Minimal Light
+3. Futuristic XR
+4. Cinematic Studio
+5. Premium Real Estate
+6. Corporate Clean
+7. High-Contrast Accessibility
+8. Elegant Editorial
+9. Ultra Minimal
+10. Vibrant Tech
+
+Theme controls must allow admin to change:
+- Colors
+- Fonts
+- Layouts
+- Section order
+- Button styles
+- Card styles
+- Header styles
+- Footer styles
+- Spacing scale
+- Border radius scale
+- Shadow intensity
+- Glass effect intensity
+
+GLOBAL GLASS EFFECT TOGGLE
+
+Include a global glassmorphism toggle.
+Admin must be able to:
+- Enable or disable glass effect system-wide
+- Enable or disable glass effect per section
+- Adjust blur amount
+- Adjust opacity
+- Adjust border transparency
+- Adjust shadow depth
+- Preview changes before publishing
+
+NAVIGATION AND MENU EDITOR
+
+Include a navigation editor.
+Admin must be able to:
+- Add menu items
+- Remove menu items
+- Reorder menu items
+- Create dropdown menus
+- Assign pages to menu items
+- Create footer menus
+- Create mobile menus
+- Set role-specific navigation visibility
+- Enable or disable CTA button in header
+
+PORTFOLIO SYSTEM
+
+Build a portfolio system.
+Each portfolio project must support:
+- Title
+- Slug
+- Featured image
+- Gallery images
+- Video
+- 360 panorama
+- 3D model
+- WebXR link
+- Category
+- Tags
+- Client name
+- Location
+- Short description
+- Long description
+- Publish status
+- SEO fields
+- Immersive gallery viewer
+- 360 tag if panoramic image is used
+- Featured project toggle
+
+Portfolio categories must include:
+- Exterior
+- Interior
+- Animation
+- XR
+- 360
+- Walkthrough
+
+Portfolio frontend must include:
+- Category filter buttons
+- All filter
+- Browse More button from homepage
+- Full portfolio page
+- Project detail page
+- Immersive gallery modal
+- Related projects
+- Enquiry CTA
+
+IMMERSIVE GALLERY VIEWER
+
+Build a universal image and video navigation engine.
+
+Include:
+- Keyboard arrow navigation: top, down, left, right
+- Mouse scroll navigation between images
+- Zoom in
+- Zoom out
+- Drag-to-pan when zoomed
+- Fullscreen immersive gallery mode
+- Touch pinch zoom on mobile
+- Swipe navigation
+- Close button
+- Thumbnail strip
+- Counter showing current image position
+- Video support
+- 360 support where applicable
+- WebXR support where applicable
+
+360 PANORAMIC VIEWER
+
+Build a panoramic engine.
+
+Support:
+- 360-degree images in equirectangular format
+- Drag to rotate
+- Gyroscope support on mobile
+- Hotspot markers
+- Fullscreen panorama mode
+- 360 tag in portfolio
+- Admin upload and assignment
+- Project-specific panorama settings
+
+360 admin controls must include:
+- Upload panoramic image
+- Detect equirectangular format
+- Add hotspot title
+- Add hotspot link
+- Assign panorama to project
+- Enable or disable gyroscope
+- Set default view
+- Fullscreen toggle
+
+WEBXR 3D MODEL VIEWER
+
+Build a real WebXR-ready 3D model viewer.
+
+Support:
+- 3D model upload in GLB and GLTF formats
+- WebXR viewer embedded in page
+- Orbit controls
+- Pan controls
+- Zoom controls
+- Real-time rendering
+- AR mode with camera placement where supported
+- VR immersive mode where supported
+- Fullscreen mode
+- Loading indicator
+- Error state for unsupported devices
+
+BACKEND 3D MODEL MANAGER
+
+Include a 3D model manager.
+Admin must be able to:
+- Upload 3D models
+- Validate GLB and GLTF files
+- Store models securely
+- Assign model to project
+- Enable or disable WebXR per project
+- Enable or disable AR mode
+- Enable or disable VR mode
+- Set model preview image
+- Add model title and description
+- Optimize model if possible
+- Track storage usage
+
+PIXEL STREAMING MODULE
+
+Build a Pixel Streaming-ready module.
+
+Include:
+- Pixel Streaming service page
+- Demo launch CTA
+- Session access control
+- Session start and stop logic
+- Admin-controlled demo access
+- Client access if authorized
+- GPU usage monitoring placeholder
+- Session analytics placeholder
+- Integration-ready backend structure
+- Fallback message if streaming service is not configured
+
+PROJECT TRACKING SYSTEM
+
+Build a project tracking system.
+
+Each project must include:
+- Project ID
+- Project name
+- Client name
+- Client email
+- Project type
+- Service category
+- Status
+- Progress percentage
+- Timeline milestones
+- Deliverables
+- Notes
+- Assigned team members
+- Start date
+- Estimated delivery date
+- Actual delivery date
+- Attachments
+- XR links
+- 360 assets
+- 3D assets
+- Publish visibility to client
+
+Project status stages may include:
+- Brief Received
+- In Production
+- Draft Ready
+- Client Review
+- Revisions
+- Final Delivery
+- Completed
+
+Project tracking frontend must allow:
+- Public quick tracking by Project ID and access code
+- Client dashboard tracking after login
+- Real-time status updates
+- Timeline view
+- File download where permitted
+- XR demo launch where permitted
+- Feedback submission
+
+CLIENT LOGIN PORTAL
+
+Build a Client Login Portal.
+
+Client portal must include:
+- Login via Project ID and Password
+- Optional email and password login
+- Optional Google login
+- Forgot password flow
+- Client dashboard
+- Assigned project list
+- Project progress timeline
+- Deliverables section
+- Download center
+- XR demo launcher
+- Pixel Streaming demo launcher if enabled
+- Message or feedback form
+- Secure access only to assigned projects
+
+FORMS AND LEAD CAPTURE
+
+Create a form system.
+
+Forms must include:
+- Contact form
+- Book Consultation form
+- Request Demo form
+- Project Inquiry form
+- Newsletter signup form
+- Portfolio enquiry form
+
+Contact form fields:
+- Name
+- Email
+- Phone
+- Service interested in
+- Message
+- Consent checkbox
+
+Booking form fields:
+- Name
+- Email
+- Phone
+- Company
+- Service selection
+- Preferred date
+- Preferred time
+- Project details
+- Budget range if appropriate
+- Consent checkbox
+
+Form system must support:
+- Database storage
+- Admin dashboard view
+- Email notification to admin
+- Email notification to user
+- Admin approval or confirmation workflow
+- Spam protection
+- Validation
+- Success message
+- Error message
+- Google Form integration option if needed
+
+PRICING AND PACKAGES
+
+Include a pricing plan editor.
+
+Admin must be able to:
+- Create pricing plans
+- Edit pricing plans
+- Delete pricing plans
+- Reorder plans
+- Toggle visibility
+- Add plan name
+- Add plan description
+- Add price
+- Add billing period
+- Add features list
+- Add CTA label
+- Add CTA link
+- Mark plan as popular
+- Assign plan to service category
+
+If payments are not initially connected, build the pricing structure as editable placeholder content with integration-ready fields.
+
+BLOG AND CONTENT MODULE
+
+Blog CMS must support:
+- Blog posts
+- Product updates
+- Changelogs
+- Case studies if useful
+- Categories
+- Tags
+- Featured images
+- Rich text editor
+- Draft and published status
+- Author assignment
+- SEO metadata
+- Related posts
+- Search
+- Pagination
+
+SEO REQUIREMENTS
+
+Build an advanced SEO system.
+
+Include:
+- Per-page meta title
+- Per-page meta description
+- Per-post meta title
+- Per-post meta description
+- URL slug control
+- Canonical tag manager
+- OpenGraph fields
+- OpenGraph image auto generation if supported
+- Twitter card fields
+- Schema markup generator
+- Local business schema
+- Service schema
+- Article schema for blog
+- FAQ schema if supported
+- XML sitemap auto generation
+- Dynamic robots.txt control
+- SEO score analysis
+- SEO preview for search and social
+- Redirect manager if supported
+- Alt text management for images
+
+MEDIA MANAGEMENT SYSTEM
+
+Build a media library dashboard.
+
+Media system must support:
+- Image uploads
+- Video uploads
+- Icons
+- Documents
+- 3D model uploads
+- 360 image uploads
+- Folder or collection organization
+- Search and filtering
+- Replace asset
+- Delete asset
+- Alt text editing
+- Usage tracking
+- Storage usage tracking
+- Image compression pipeline
+- WebP conversion
+- AVIF conversion if supported
+- 360 image detection
+- 3D file validation
+- File size limits
+- Secure file access based on roles
+
+PERFORMANCE AND PRODUCTION ENHANCEMENTS
+
+Build with performance best practices.
+
+Include:
+- CDN integration logic
+- Edge caching where supported
+- Image lazy-load optimization
+- Responsive image loading
+- Preload strategy for showreel
+- Progressive loading for 3D models
+- Lazy loading for immersive modules
+- Optimized fonts
+- Minified assets where supported
+- Fast page transitions
+- Performance monitoring placeholders
+- Lighthouse-friendly structure
+
+SECURITY AND COMPLIANCE
+
+Include security best practices:
+- Role-based access control
+- Protected admin routes
+- Protected client routes
+- Input validation
+- Secure file uploads
+- Secure session handling
+- CSRF protection where relevant
+- XSS protection where relevant
+- SQL or data injection protection where relevant
+- Rate limiting for forms and login
+- Audit logs for admin actions
+- Secure password reset flow
+- Private media access for client deliverables
+- Data privacy controls
+- Consent fields for forms
+- Legal pages
+
+ACCESSIBILITY
+
+Include accessibility best practices:
+- Keyboard navigation
+- Focus states
+- Visible labels
+- Alt text support
+- Accessible form errors
+- Sufficient color contrast
+- Responsive typography
+- Reduced motion support if possible
+- ARIA labels where appropriate
+
+ANALYTICS READY STRUCTURE
+
+Include analytics-ready event tracking placeholders for:
+- CTA clicks
+- Form submissions
+- Booking submissions
+- Portfolio views
+- Project tracking searches
+- XR demo launches
+- Showreel plays
+- Download clicks
+- Button clicks
+- Page views
+- Newsletter signups
+- Client dashboard logins
+
+REAL AI BACKEND MODULE
+
+Include a real AI-ready backend module.
+
+AI features may include:
+- AI blog topic suggestions
+- AI meta title and description generator
+- AI alt text generator
+- AI content improvement suggestions
+- AI chat assistant for lead capture
+- AI project summary generator
+- AI SEO score suggestions
+- AI smart search if supported
+
+If external AI integration is not available, create integration-ready settings, API fields, and admin toggles.
+
+ADMIN DASHBOARD UI
+
+Build the complete Admin Panel UI.
+
+Admin dashboard must include:
+- Admin login screen
+- Role-based dashboard views
+- Sidebar navigation
+- Top bar with search and notifications
+- Dashboard analytics cards
+- Quick actions
+- Content management modules
+- Project management modules
+- Media management modules
+- Theme management modules
+- SEO management modules
+- User management modules
+- Settings modules
+- Audit logs
+- Help documentation placeholder
+
+ADMIN DASHBOARD HOME
+
+Admin dashboard home should show:
+- Total leads
+- Total bookings
+- Total projects
+- Active projects
+- Published pages
+- Published posts
+- Media storage usage
+- Recent form submissions
+- Recent client activity
+- Theme status
+- SEO health
+- Quick links to editors
+
+REAL CMS EDITING INTERFACE
+
+Include a real CMS editing interface.
+
+The interface must support:
+- WYSIWYG content editor
+- Section toggling system
+- Homepage section reordering
+- Custom content blocks
+- Dynamic content binding
+- Reusable components
+- Inline image replacement
+- Inline text editing
+- Button link editing
+- SEO editing from same screen
+- Publish and draft controls
+- Preview before publishing
+
+CUSTOMIZATION CONTROLS
+
+Admin must be able to:
+- Change colors
+- Change fonts
+- Edit layouts
+- Update content
+- Manage navigation
+- Toggle sections on/off
+- Reorder homepage sections
+- Connect social media links
+- Upload logo and favicon
+- Edit contact details
+- Edit footer content
+- Change theme mode
+- Switch templates
+- Adjust glass effect
+- Manage CTA buttons
+
+CURRENT PHASE PRIORITY
+
+Update the current Phase 4 requirements.
+
+Phase 4 Platform Upgrade must include:
+- Client Login Portal
+- Real AI Backend
+- Media Optimization Pipeline
+- Advanced SEO System
+- Performance and production enhancements
+- Immersive media modules
+- WebXR-ready model viewer
+- 360 panoramic viewer
+- Pixel Streaming-ready control module
+- Admin and Theme Engine completion
+
+Ensure previous phases remain stable, editable, and production-ready.
+
+FINAL OUTPUT REQUIREMENTS
+
+Generate:
+- Complete website structure
+- Complete page structure
+- Complete navigation structure
+- Complete frontend UI
+- Complete backend logic
+- Complete database collections
+- Complete admin dashboard
+- Complete CMS
+- Complete live page builder
+- Complete theme engine
+- Complete media management system
+- Complete project tracking system
+- Complete client portal
+- Complete form and booking system
+- Complete SEO system
+- Complete role-based access control
+- Complete placeholder content
+- Complete production-ready implementation plan
+
+The final result must be:
+- Fully editable
+- Professional
+- Scalable
+- Secure
+- Responsive
+- Conversion-optimized
+- Non-technical user friendly
+- Production-ready
+
+Generate the complete website structure, UI, backend logic, and admin dashboard based on the above requirements. The result must be fully editable, professional, and production-ready.

@@ -1,0 +1,110 @@
+﻿VIZTR PROMPT 05 — BACKEND AND ADMIN CMS
+=========================================
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+SYSTEM: You are building VizTR. This is Prompt 05 of 10. Build Prisma schema, auth, RBAC, and admin CMS shell.
+
+ASSIGNMENT
+1. Create Prisma schema with 32+ models
+2. Set up NextAuth authentication
+3. Define RBAC for 4 roles
+4. Build admin dashboard shell with sidebar navigation
+
+PRISMA SCHEMA — packages/database/schema.prisma
+Models to create: User, Session, Project, ProjectAsset, ProjectUpdate, Service, PortfolioItem, BlogPost, Category, Tag, Testimonial, FAQ, MediaAsset, Model3D, Panorama, XRLink, PixelStreamSession, FormSubmission, Booking, Lead, NavigationMenu, Theme, DesignSettings, SEOSettings, AnalyticsEvent, AuditLog, Notification, SiteSettings, Client, PricingPlan
+
+User fields: id, email, name, password, role (SUPER_ADMIN/ADMIN/USER/CLIENT), avatar, emailVerified, timestamps
+Project fields: id, name, slug, status (BRIEF_RECEIVED through COMPLETED), progress 0-100, serviceCategory, clientName, clientEmail, dates, description, visibility
+Service fields: id, name, slug, category (studio/xr-world), description, icon, image, visible, order
+PortfolioItem fields: id, title, slug, featuredImage, galleryImages, video, panorama, model3d, category (exterior/interior/animation/xr/360/walkthrough), tags, clientName, location, shortDescription, longDescription, featured, seo fields
+BlogPost fields: id, title, slug, content, excerpt, featuredImage, authorId, category, tags, status (draft/published), publishedAt, seo fields
+MediaAsset fields: id, name, type, url, size, altText, folder, uploadedBy
+Model3D fields: id, name, url, format, size, projectId, previewImage
+Panorama fields: id, name, imageUrl, hotspots JSON, projectId, gyroscopeEnabled
+FormSubmission fields: id, type, data JSON, status, readAt
+Booking fields: id, name, email, phone, company, service, preferredDate, preferredTime, details, status
+SiteSettings fields: id, key, value JSON (stores all editable site content)
+
+AUTHENTICATION — NextAuth setup
+Install: pnpm add next-auth @auth/prisma-adapter
+Providers: Email (magic link), Google OAuth, Credentials (for client portal)
+Files: apps/web/src/app/api/auth/[...nextauth]/route.ts, apps/web/src/lib/auth.ts
+Session strategy: JWT
+Callbacks: signIn, session, jwt
+
+RBAC — Role-based access control
+SUPER_ADMIN: full access to everything, manage other admins
+ADMIN: manage projects, users, content, cannot manage system settings
+USER: assigned projects only, upload assets, manage assigned content
+CLIENT: assigned projects only, view timeline, deliverables, demos
+Middleware: apps/web/src/middleware.ts — protect /admin/*, /dashboard/*, /client-dashboard/*
+Role check utility: apps/web/src/lib/rbac.ts
+
+ADMIN DASHBOARD SHELL
+File: apps/admin/src/app/layout.tsx
+Sidebar navigation with 6 sections:
+
+Section 1 — Overview:
+  /admin/dashboard (Platform overview)
+  /admin/projects (All projects)
+  /admin/analytics (Analytics)
+
+Section 2 — Users:
+  /admin/users (User management)
+  /admin/clients (Client access)
+  /admin/inquiries (Contact inquiries)
+
+Section 3 — XR Tools:
+  /admin/vr-configurator (VR tour builder)
+  /admin/ar (AR projects)
+  /admin/streaming (GPU and streaming)
+
+Section 4 — Content:
+  /admin/blog (Blog management)
+  /admin/cms/services (Services CMS)
+  /admin/cms/testimonials (Testimonials)
+  /admin/media (Media library)
+  /admin/cms/navigation (Navigation menus)
+  /admin/forms (Form builder)
+  /admin/design/themes (Theme manager)
+  /admin/seo (SEO settings)
+
+Section 5 — Bookings:
+  /admin/bookings (All bookings)
+  /admin/support (Support tickets)
+
+Section 6 — System:
+  /admin/settings (Platform settings)
+  /admin/ai-settings (AI config)
+  /admin/admins (Admin management)
+
+Sidebar style:
+  - Width: 260px desktop, collapsible
+  - Background: theme secondary background
+  - Section headings: uppercase, small, bold, letter-spacing
+  - Items: icon + label, hover highlight, active indicator
+  - Active item: left border accent color, filled background
+
+Admin top bar:
+  - Search input
+  - Notification bell
+  - User avatar + name
+  - Logout button
+
+Admin dashboard home (/admin/dashboard):
+  - Stats cards: Total leads, Total bookings, Total projects, Active projects
+  - Recent activity list
+  - Quick links to editors
+  - Theme status card
+  - SEO health card
+
+VERIFICATION
+1. Prisma schema validates: npx prisma validate
+2. Auth login page renders at /api/auth/signin
+3. Admin sidebar shows all 20 items in 6 sections
+4. Admin top bar renders with search and user info
+5. Dashboard home shows stats cards
+6. Protected routes redirect unauthorized users
+7. No console errors
+8. TypeScript compiles
+
+END OF PROMPT 05

@@ -1,0 +1,168 @@
+VIZTR PROMPT 07 — HYBRID XR ENGINE
+====================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+
+SYSTEM: You are building VizTR. Prompt 07 of 10. Build the Hybrid Tour/VR Engine — the core product differentiator.
+
+
+ASSIGNMENT
+1. Build 4-layer Hybrid XR Engine
+2. Implement Scene, Hotspot, Annotation, Teleport layers
+3. Build ModeManager (Tour/VR/AR)
+4. Progressive Reveal and Cinematic Entry
+5. Shared scene data bridge
+
+
+4-LAYER ARCHITECTURE
+--------------------
+Layer 1: Scene Layer (Galaxy) — 360 HDR or GLB environment
+Layer 2: Interaction Layer (Hotspot) — clickable 3D points
+Layer 3: Info Layer (Annotation) — text cards on hotspots
+Layer 4: Navigation Layer (Teleport) — room-to-room movement
+
+
+FILE STRUCTURE
+--------------
+apps/web/src/components/xr/
+  XRViewer.tsx            Main container
+  SceneManager.tsx        Scene loading and transitions
+  SceneLayer.tsx          Galaxy layer (360 or GLB)
+  HotspotLayer.tsx        Hotspot interaction layer
+  Hotspot.tsx             Individual hotspot
+  AnnotationLayer.tsx     Annotation info layer
+  Annotation.tsx          Annotation card
+  TeleportLayer.tsx       Navigation layer
+  TeleportPoint.tsx       Teleport point
+  ModeManager.tsx         Tour/VR/AR switching
+  ProgressiveReveal.tsx   VR button reveal
+  CinematicEntry.tsx      Entry animation
+  xr.types.ts             Type definitions
+  xr.store.ts             Zustand state
+
+
+SCENE LAYER (SceneLayer.tsx)
+-----------------------------
+Scene type: id, name, type ("360" or "3d"), url, hotspots[], annotations[], teleportPoints[], preload[], thumbnail
+
+Loading:
+  - 360 scenes: Marzipano (dynamic import, no SSR)
+  - 3D scenes: Babylon.js (dynamic import, no SSR)
+  - Lazy load current + adjacent only
+  - LOD for 3D environments
+
+Transition:
+  - Fade to black (300ms) -> unload -> load new -> fade in (300ms)
+
+
+HOTSPOT LAYER (Hotspot.tsx)
+----------------------------
+Hotspot type: id, position [x,y,z], action ("teleport"|"open_info"|"play_media"|"external"), target, title, icon?, visible
+
+Appearance:
+  - 16px circle, pulsing animation (scale 1-1.2, 1s)
+  - Accent color
+  - Hover: expand + tooltip
+  - Click: execute action
+
+360 scenes use yaw/pitch. 3D scenes use xyz coordinates.
+
+
+ANNOTATION LAYER (Annotation.tsx)
+----------------------------------
+Annotation type: id, text, hotspotId, position, singleOpen, style ("glass"|"solid"|"minimal")
+
+Appearance:
+  - Glass card (backdrop-blur, semi-transparent)
+  - Title bold, description text
+  - Close button (X)
+  - Max width 300px
+  - Fade-in 200ms
+
+Behavior:
+  - Click hotspot with open_info -> show annotation
+  - Only one visible at a time
+  - Click outside or X -> hide
+
+
+TELEPORT LAYER (TeleportPoint.tsx)
+-----------------------------------
+Teleport type: id, position, targetSceneId, label, thumbnail?
+
+Appearance:
+  - Ground ring with glow (primary color)
+  - Hover: expand ring + label
+  - Click: scene transition
+
+Behavior:
+  - Click -> SceneManager loads target
+  - Fade out -> load -> fade in
+  - Camera resets in new scene
+
+
+MODE MANAGER (ModeManager.tsx)
+-------------------------------
+Modes: "tour" (default), "vr", "ar"
+
+Device detection:
+  - Check navigator.xr
+  - Check immersive-vr / immersive-ar
+  - No WebXR: tour only
+  - VR headset: show VR button
+  - AR device: show AR button
+
+Tour: mouse/touch drag + click hotspots
+VR: WebXR immersive-vr + controllers
+AR: WebXR immersive-ar + camera
+
+
+PROGRESSIVE REVEAL (ProgressiveReveal.tsx)
+-------------------------------------------
+VR button: hidden initially, appears after 2-3 room teleports
+  - Fade in + slide up
+  - Stays visible for session
+
+
+CINEMATIC ENTRY (CinematicEntry.tsx)
+-------------------------------------
+First visit: fade from black (1s) -> camera zoom (2s) -> hotspots appear one by one
+Subsequent: quick fade in (300ms), hotspots immediate
+
+
+XR VIEWER CONTAINER (XRViewer.tsx)
+------------------------------------
+Wraps: ModeManager > CinematicEntry > SceneManager > (SceneLayer + HotspotLayer + AnnotationLayer + TeleportLayer) + ProgressiveReveal
+
+Props: projectId, scenes[], initialSceneId, mode?
+
+
+ZUSTAND STORE (xr.store.ts)
+-----------------------------
+State: currentSceneId, currentMode, activeAnnotation, viewedScenes[], isTransitioning, isEntryComplete, deviceCapabilities
+Actions: setScene, setMode, showAnnotation, hideAnnotation, markSceneViewed, completeEntry
+
+
+SHARED DATA BRIDGE
+-------------------
+All scene data self-contained in JSON
+Loadable from external URL: /xr/view?project=ID
+Includes all hotspots, annotations, teleport points
+No database dependency for rendering
+
+
+VERIFICATION
+1. XRViewer renders with 360 panorama
+2. Hotspots appear at correct positions
+3. Click hotspot opens annotation
+4. Click outside closes annotation
+5. Teleport loads adjacent scene
+6. Scene transition fades smoothly
+7. ModeManager detects capabilities
+8. Tour mode works with mouse drag
+9. VR button appears after 3 teleports
+10. Cinematic entry plays first visit
+11. Zustand store updates correctly
+12. No console errors
+13. TypeScript compiles
+
+END OF PROMPT 07

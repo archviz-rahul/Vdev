@@ -1,0 +1,185 @@
+VIZTR PROMPT 09 — QA AND LAUNCH
+=================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+
+SYSTEM: You are building VizTR. Prompt 09 of 10 (FINAL). QA verification, seed data, deployment.
+
+
+ASSIGNMENT
+1. Verify all previous prompts built correctly
+2. Fix issues found
+3. Seed database with sample data
+4. Deployment preparation
+
+
+QA CHECKLIST
+------------
+
+HEADER:
+  [ ] Logo VizTR renders left
+  [ ] Center nav: Home, Studio, XR World, Contact
+  [ ] Studio dropdown: Exterior, Interior, Walkthrough
+  [ ] XR World dropdown: WebXR, WebAR, VR, Virtual Tour, Pixel Streaming
+  [ ] Theme toggle cycles Light/Dark/System
+  [ ] Login icon links to /client-access
+  [ ] Sticky header with backdrop-blur
+  [ ] Mobile hamburger works
+  [ ] Active page underline indicator
+  [ ] Theme persists after reload
+
+HOMEPAGE:
+  [ ] Hero: headline, subheadline, 3 CTAs
+  [ ] Marquee: 8 items scrolling
+  [ ] Service Categories: 2 cards
+  [ ] Studio Preview: 3 cards
+  [ ] XR Preview: 5 cards, Pixel Streaming highlighted
+  [ ] Showreel with play button
+  [ ] Portfolio Preview with filters
+  [ ] XR Experience: 4 cards
+  [ ] Track Project form
+  [ ] Benefits: 7 items
+  [ ] How It Works: 4 steps
+  [ ] Use Cases: 5 audiences
+  [ ] Testimonials: 3 cards + stats
+  [ ] FAQ: 8 accordions
+  [ ] Final CTA
+
+PAGES:
+  [ ] All 21 pages render
+  [ ] Service pages: hero, description, benefits, FAQ, CTA
+  [ ] Portfolio: filter grid
+  [ ] Contact form all fields
+  [ ] Booking form all fields
+  [ ] Client Access: 2 tabs
+  [ ] Track Project: timeline
+  [ ] Privacy/Terms: content present
+  [ ] 404 page works
+
+PORTFOLIO/VIEWERS:
+  [ ] Portfolio filtering works
+  [ ] Gallery viewer opens
+  [ ] Gallery keyboard nav
+  [ ] Gallery zoom
+  [ ] Gallery fullscreen
+  [ ] 360 viewer loads Marzipano
+  [ ] 360 drag rotate
+  [ ] 360 hotspots clickable
+  [ ] 3D viewer loads GLB
+  [ ] 3D orbit/pan/zoom
+
+BACKEND:
+  [ ] Prisma schema validates
+  [ ] Auth login renders
+  [ ] Admin sidebar: 20 items, 6 sections
+  [ ] Dashboard stats
+  [ ] Protected routes redirect
+  [ ] RBAC for 4 roles
+
+CLIENT PORTAL:
+  [ ] Client Access login
+  [ ] Client Dashboard projects
+  [ ] Shared link works
+  [ ] Tracking timeline
+
+FORMS:
+  [ ] Contact validates and submits
+  [ ] Booking validates and submits
+  [ ] Demo request works
+  [ ] Newsletter in footer
+  [ ] All show success/error
+
+XR ENGINE:
+  [ ] XRViewer renders
+  [ ] Scene loading
+  [ ] Hotspots clickable
+  [ ] Annotations open/close
+  [ ] Teleport transitions
+  [ ] ModeManager detects
+  [ ] Progressive reveal
+  [ ] Cinematic entry
+
+SEO:
+  [ ] Meta tags all pages
+  [ ] Schema markup valid
+  [ ] Sitemap at /sitemap.xml
+  [ ] robots.txt accessible
+
+PERFORMANCE:
+  [ ] Lighthouse 90+
+  [ ] Images lazy loaded
+  [ ] Fonts optimized
+  [ ] No layout shift
+
+ACCESSIBILITY:
+  [ ] Keyboard navigation
+  [ ] Focus states visible
+  [ ] Alt text on images
+  [ ] ARIA labels
+
+
+DATABASE SEEDING
+----------------
+Create: packages/database/seed.ts
+
+Seed data:
+  - 3 projects (exterior, interior, XR)
+  - 5 services (3 studio + 2 xr-world)
+  - 3 blog posts
+  - 5 testimonials
+  - 8 FAQ items
+  - Admin user: admin@viztr.com / password123
+  - Manager: manager@viztr.com / password123
+  - Standard: user@viztr.com / password123
+  - Default site settings
+  - Default navigation menus
+  - Default theme
+
+Run: pnpm db:seed
+
+
+DEPLOYMENT
+----------
+Vercel setup:
+  - Connect GitHub repo
+  - Environment variables:
+    DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL
+    GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+    REDIS_URL
+  - Build: pnpm build
+  - Install: pnpm install
+  - Enable preview deploys
+
+Create .env.example with all variables listed.
+
+
+FINAL CHECKS
+------------
+  [ ] pnpm build succeeds
+  [ ] No TypeScript errors
+  [ ] No ESLint errors
+  [ ] No broken nav links
+  [ ] All forms functional
+  [ ] Auth flows end-to-end
+  [ ] Theme works everywhere
+  [ ] Mobile: 375px, 768px, 1024px, 1440px
+  [ ] Dark and light modes correct
+  [ ] Footer renders all pages
+
+
+HANDOFF DOCUMENTATION
+---------------------
+Create HANDOFF.md with:
+  - Project overview
+  - Tech stack summary
+  - How to run locally
+  - How to deploy
+  - Environment variables needed
+  - Test credentials
+  - Known issues
+  - Next steps
+
+Commit: docs: add VizTR implementation guide and handoff
+
+
+END OF PROMPT 09

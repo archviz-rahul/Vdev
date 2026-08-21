@@ -1,0 +1,331 @@
+01 — Overview
+What Changed
+5-phase transformation summary
+The platform had all the right features already built. The problem was that 26 pages were hidden, multiple dashboards existed, and the admin panel was overloaded. Here is a concise record of every fix made.
+
+Phase 1
+Navigation Fixed
+A new "XR Experiences" dropdown was added to the main header, making all previously hidden VR, AR, and XR pages accessible within 2 clicks from anywhere on the site. The VR Tours link was corrected to point to /vr/tours instead of the VR dashboard.
+
+Phase 2
+Dashboards Consolidated
+Four separate dashboard routes were reduced to two. /user/dashboard now redirects to /dashboard. /xr-dashboard redirects to /dashboard?section=xr. The main /dashboard uses tabs for Projects, XR Experiences, and Activity.
+
+Phase 3
+Feature Organisation
+All features were grouped into four clear categories: XR Experiences (VR Tours, AR Viewer, WebXR Studio), Streaming (Pixel Streaming), CMS/Admin (content management), and Analytics. Each category has a clear entry point from the dashboard sidebar.
+
+Phase 4
+Admin Panel Reduced
+The admin sidebar was cut from 31 items to 20, organised into 6 clear sections: Overview, Users, XR Tools, Content, Bookings, and System. Duplicate entries for Media Library and Navigation Menus were removed.
+
+Phase 5 — UX Simplification
+Confusing labels were renamed throughout. "Popular" and "New" badges were added to key navigation items. Dashboard views were consolidated with tabs rather than separate pages. The overall result is a platform where a new user can orient themselves without needing a guided tour.
+
+"XR Experiences" dropdown in header with 5 direct links
+VR Tours link correctly points to /vr/tours
+All 26 AR/XR pages are now reachable from the header
+2 dashboard URLs: /dashboard and /dashboard?section=xr
+Admin sidebar reduced to 20 items across 6 labelled sections
+Single Media Library at /admin/media
+Single Navigation editor at /admin/cms/navigation
+Streaming consolidated to 2 routes: admin + user
+
+Architecture
+Full Site Map
+Every page, organised by zone
+The platform is divided into 9 zones. Each zone has a clear purpose and audience. This is the definitive reference for where everything lives.
+
+Zone	Entry Point	Pages	Who Uses It
+Public Site	/	18	New visitors, leads, general public
+Auth	/login	4	All registered users
+User Dashboard	/dashboard	8	Logged-in clients and architects
+Admin Panel	/admin/dashboard	65+	Rahul / admin team only
+VR Experiences	/vr	15	Users building or viewing VR tours
+AR Experiences	/ar	17	Users with AR projects
+XR Studio	/xr	9	Advanced WebXR users
+Client Portal	/client-access	3	Clients viewing shared projects
+Booking	/book-consultation	2	Leads booking a call or VR config
+PUBLIC SITE
+  /                         Landing page
+  /about                    About VizTR
+  /services/[slug]          Individual service detail
+  /portfolio/[id]           Project detail
+  /vr-portfolio/[slug]      VR portfolio item
+  /blog/[slug]              Blog post
+  /contact                  Contact form
+  /faq                      FAQ
+  /support/articles/[id]    Support article
+  /privacy-policy           Legal
+  /terms-conditions         Legal
+
+AUTH
+  /login
+  /signup
+  /forgot-password
+  /reset-password
+
+USER DASHBOARD  (single entry, tabs inside)
+  /dashboard                Main dashboard (tabs: Projects / XR / Activity)
+  /dashboard/tours          VR tours
+  /dashboard/streaming      Pixel Streaming sessions
+  /dashboard/assets         Asset library
+  /dashboard/analytics      Usage analytics
+  /dashboard/settings       Account settings
+  /user/xr-links            XR link manager
+  /user/upload              File upload
+
+  REDIRECTS (legacy → canonical)
+  /user/dashboard           → /dashboard
+  /xr-dashboard             → /dashboard?section=xr
+  /user                     → /dashboard
+  /user/streaming           → /dashboard/streaming
+
+ADMIN PANEL  (/admin/dashboard as entry)
+  OVERVIEW
+    /admin/dashboard        Platform overview
+    /admin/projects         All projects
+    /admin/analytics        Analytics
+  USERS
+    /admin/users            User management
+    /admin/clients          Client access
+    /admin/inquiries        Contact inquiries
+  XR TOOLS
+    /admin/vr-configurator  VR tour builder
+    /admin/ar               AR projects
+    /admin/streaming        GPU and streaming management
+  CONTENT
+    /admin/blog/*           Blog management
+    /admin/cms/services     Services CMS
+    /admin/cms/testimonials Testimonials
+    /admin/media            Media library  ← single entry
+    /admin/cms/navigation   Navigation menus  ← single entry
+    /admin/forms            Form builder
+    /admin/design/themes    Theme manager
+    /admin/seo              SEO settings
+  BOOKINGS
+    /admin/bookings         All bookings
+    /admin/support/*        Support tickets
+  SYSTEM
+    /admin/settings         Platform settings
+    /admin/ai-settings      AI assistant config
+    /admin/admins           Admin user management
+
+VR EXPERIENCES  (/vr as entry)
+  /vr/tours                 Tour browser
+  /vr/builder/[id]          Tour builder
+  /vr/editor                Visual editor
+  /vr/scenes                Scene manager
+  /vr/hotspots              Hotspot editor
+  /vr/floor-plans           Floor plans  ← now linked
+  /vr/collaboration         Multiuser collaboration
+  /vr/analytics             VR analytics
+  /vr/leads                 Lead capture
+  /vr/exports               Export manager
+  /vr/ai-guide              AI guide  ← now linked
+  /vr/models                3D models
+  /vr/settings              VR settings
+  /vr-demo/[id]             Public viewer
+  /vr-tour/[projectId]      Shared tour URL
+
+AR EXPERIENCES  (/ar as entry)
+  /ar/projects              Project list
+  /ar/viewer                AR viewer (public)
+  /ar/scene-builder         Scene builder
+  /ar/models                3D models
+  /ar/hotspots              Hotspot editor
+  /ar/analytics             Analytics
+  /ar/leads                 Lead capture
+  /ar/qr-codes              QR code generator
+  /ar/sharing               Share settings
+  /ar/variants              Product variants
+  /ar/devices               Device testing
+  /ar/lighting              Lighting config
+  /ar/performance           Performance monitor
+  /ar/settings              AR settings
+  /ar/embed                 Embed code
+  /view/ar/[projectId]      Shared AR URL
+
+XR STUDIO  (/xr as entry)
+  /xr/projects              Projects
+  /xr/editor/[id]           Editor
+  /xr/exports               Exports
+  /xr/analytics             Analytics
+  /xr/configurations        Configurations
+  /xr/help                  Help  ← now linked
+
+CLIENT PORTAL
+  /client-access            Client login
+  /client-dashboard         Client view
+  /client-view/[accessCode] Shared access link
+
+BOOKING
+  /book-consultation        Book a call
+  /configure-vr             VR configuration form
+
+
+User Dashboards
+Dashboard Structure
+What logged-in users see
+There is now one main dashboard at /dashboard. Legacy URLs redirect automatically. The dashboard uses a tab system so users can switch between Projects, XR Experiences, and Activity without navigating to a new page.
+
+New (unified)
+/dashboard — Single entry, tabs inside
+/user/dashboard → redirects to /dashboard
+/xr-dashboard → redirects to /dashboard?section=xr
+/dashboard/streaming — User's Pixel Streaming sessions
+/dashboard/tours — User's VR tours
+/dashboard/analytics — Usage data
+
+Admin Panel
+Admin Panel
+20 items, 6 sections — down from 31
+🔐
+Admin access: The admin panel is only accessible to users with the Admin or Super Admin role. Entry point is /admin which redirects to /admin/dashboard. Regular users and clients cannot access any /admin/* route.
+
+Section 1 — Overview
+Dashboard, Projects, Analytics
+Dashboard — platform-wide stats
+Projects — all client projects
+Analytics — usage and engagement data
+Section 2 — Users
+All Users, Clients, Admin Access
+All Users — manage accounts
+Clients — client portal access
+Admin Access — manage admin team (Super Admin only)
+Section 3 — XR Tools
+VR Tours, AR, Streaming
+VR Tour Builder — create and edit tours
+AR Projects — manage AR builds
+Streaming — GPU management for Pixel Streaming
+Section 4 — Content
+Blog, Media, Services, Navigation
+Blog — posts management
+Media Library — single location for all assets
+Services CMS — edit service descriptions
+Testimonials — manage social proof
+Navigation — menu editor (single instance only)
+Design and Theme — visual customisation
+SEO settings
+Section 5 — Bookings
+Bookings, Inquiries, Support
+All Bookings — consultation requests
+Inquiries — contact form submissions
+Support Tickets — support management
+Section 6 — System
+Settings, AI, Monitor
+Settings — platform configuration
+AI Assistant — AI settings and prompt templates
+System Monitor — health and performance
+07 — XR Experiences
+XR Feature Zones
+VR, AR, and WebXR — all now reachable
+VizTR has three distinct XR systems. Each has its own dashboard, editor, analytics, and settings. They were previously hidden — they are now accessible from the main navigation and from the user dashboard.
+
+VR System — 15 pages
+Virtual Reality
+Dashboard at /vr
+Tour browser — /vr/tours
+Visual builder — /vr/builder
+Hotspot editor — /vr/hotspots
+Floor plans — /vr/floor-plans ✦ now linked
+Collaboration — /vr/collaboration
+AI Guide — /vr/ai-guide ✦ now linked
+Public viewer — /vr-demo
+AR System — 17 pages
+Augmented Reality
+Dashboard at /ar
+Projects — /ar/projects
+Scene builder — /ar/scene-builder
+AR Viewer — /ar/viewer
+QR Code generator — /ar/qr-codes
+Analytics and Leads
+Device testing page
+Embed code generator
+XR Studio — 9 pages
+WebXR Studio
+Dashboard at /xr
+Projects — /xr/projects
+XR Editor — /xr/editor
+Configurations
+Analytics
+Export manager
+Help — /xr/help ✦ now linked
+📡
+Pixel Streaming sits separately from VR/AR/XR. Managed by admin at /admin/streaming and accessed by users at /dashboard/streaming. This is where the workstation GPU streams a live Unreal Engine 5 session directly to a client's browser during a booked demo.
+
+08 — Client Portal
+Client Portal
+How clients access their projects
+Entry
+/client-access
+A dedicated login page for clients — separate from the main /login. Clients do not see the full user dashboard. They only see content shared with them.
+
+After Login
+/client-dashboard
+A simplified dashboard showing only the projects the admin has granted them access to. No admin controls, no billing, no settings — just their content.
+
+Shared Link
+/client-view/[accessCode]
+A unique URL generated per client. The admin shares this link and the client can view their project without logging in, as long as they have the access code in the URL.
+
+Admin Control
+/admin/clients
+The admin manages all client accounts here — creating accounts, assigning projects, generating access links, and revoking access when a project is complete.
+
+09 — Access
+Login Credentials
+Test accounts for all three roles
+The platform has three role levels. Each role sees a different version of the dashboard and has different permissions. These are the current test credentials.
+
+Super Admin
+admin@viztr.com
+password123
+Full access to everything. Can manage other admins. Goes to /admin/dashboard.
+
+Admin / Manager
+manager@viztr.com
+password123
+Can manage projects, users, and content. Cannot manage other admins. Goes to /admin/dashboard.
+
+Standard User
+user@viztr.com
+password123
+Access to user dashboard only. Sees their own projects and sessions. Goes to /dashboard.
+
+⚠️
+Important: Change all three passwords before sharing client access or going live. The credentials above are for development and testing only. Update them in Firebase Auth before launch.
+
+
+What to Build Next
+Platform Phase 2 — recommended priorities
+With the platform structure clean and all features accessible, the next focus should be the admin content editor and client-facing experience quality.
+
+Priority 1 — This Week
+Test All 3 Role Flows End-to-End
+Log in as each of the three test users and walk through their complete journey. Confirm every link works, every redirect fires correctly, and no broken pages appear. Fix anything that breaks before inviting real clients.
+
+Priority 2 — This Week
+Admin: Visual Hotspot Editor
+The VR Tour Builder at /vr/builder needs a visual editor for placing hotspots without code. An architect should be able to click on a 3D model and drop a hotspot — this is the core admin workflow.
+
+Priority 3 — Next Sprint
+Client Portal: Shareable Project Link
+The /client-view/[accessCode] system needs to be tested with a real project. Generate an access code in the admin, share the link with a test client, and confirm they can view the VR tour without creating an account.
+
+Priority 4 — Next Sprint
+Analytics: Connect Real Data
+The analytics dashboards at /admin/analytics and /dashboard/analytics should pull real session data. Confirm hotspot clicks, session duration, and device type are being written to Firebase correctly.
+
+Priority 5 — When Ready
+Stripe Billing Integration
+Feature gating for SaaS tiers. Standard users get basic tours; premium users unlock multiuser, analytics export, and Pixel Streaming. This converts VizTR from a service tool into a recurring-revenue product.
+
+Priority 6 — Phase 4
+AI Auto-Annotations
+Connect the VizTR AI pipeline to auto-generate annotation text from model metadata or a client brief. This is the differentiator that separates VizTR from every other tour platform on the market.
+
+Platform Status Summary
+VizTR is now a fully navigable, feature-complete XR SaaS platform. All 146 pages are reachable, the admin panel is clean, dashboards are unified, and the XR features are exposed to visitors. The platform is ready for controlled client testing. The remaining items are quality improvements, not blockers.
+
+

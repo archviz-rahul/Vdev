@@ -1,0 +1,349 @@
+﻿VIZTR PROMPT 01 — FOUNDATION
+==============================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+================================================
+
+SYSTEM: You are building the VizTR Architecture Visualization Studio + XR World Platform. This is Prompt 01 of 10. Build ONLY the foundation. Do not build homepage content yet. Follow every instruction exactly.
+
+
+ASSIGNMENT
+----------
+Build the monorepo foundation for VizTR:
+1. Turborepo monorepo structure
+2. Next.js 16.2 App Router for web app
+3. Tailwind CSS 4.0+ configured
+4. Shared header component matching exact specification
+5. Theme engine (Light/Dark/System)
+6. Global design tokens
+7. Footer component
+8. 404 page
+9. Basic layout structure
+
+
+TECH STACK (USE ONLY THESE)
+----------------------------
+Frontend Framework:  Next.js 16.2 (App Router)
+Styling:             Tailwind CSS 4.0+ (CSS-first config, NO tailwind.config.js — use CSS @theme directive in globals.css)
+Typography:          next/font (self-hosted, use Inter and Playfair Display)
+Data Fetching:       TanStack Query 5.56+
+Client State:        Zustand 4.5+
+Hosting:             Vercel
+CDN:                 Cloudflare CDN + Cloudflare R2
+Caching:             Redis 7+
+Background:          BullMQ 5.15+
+XR/3D:               Babylon.js 8+ (lazy, not installed in this prompt)
+360 Tour:            Marzipano (lazy, not installed in this prompt)
+AI:                  Groq via OmniRoute (not installed in this prompt)
+
+
+MONOREPO STRUCTURE
+------------------
+Create this exact directory structure:
+
+viztr-platform/
+  apps/
+    web/
+      src/
+        app/
+          layout.tsx              Root layout
+          page.tsx                Homepage placeholder
+          not-found.tsx           404 page
+          globals.css             Global styles with Tailwind
+        components/
+          Header.tsx              Header component
+          Footer.tsx              Footer component
+          ThemeToggle.tsx         Theme toggle button
+          DropdownMenu.tsx        Reusable dropdown
+        lib/
+          store.ts                Zustand store
+          queryClient.ts          TanStack Query client
+          theme.ts                Theme utilities
+        types/
+          index.ts                Shared types
+      public/
+        favicon.ico               Placeholder
+      package.json
+      tsconfig.json
+      next.config.ts
+    admin/
+      src/app/layout.tsx         Admin layout placeholder
+      src/app/page.tsx           Admin redirect placeholder
+      package.json
+      tsconfig.json
+      next.config.ts
+    client-portal/
+      src/app/layout.tsx         Client portal layout placeholder
+      src/app/page.tsx           Client portal placeholder
+      package.json
+      tsconfig.json
+      next.config.ts
+  packages/
+    ui/
+      src/
+        index.ts
+        Button.tsx
+        Card.tsx
+      package.json
+      tsconfig.json
+    database/
+      schema.prisma              Empty models placeholder
+      package.json
+    utils/
+      src/
+        index.ts
+        cn.ts                    className merge (clsx + tailwind-merge)
+      package.json
+    types/
+      src/
+        index.ts
+        navigation.ts
+        theme.ts
+      package.json
+  turbo.json
+  package.json                   Root with pnpm workspaces
+  pnpm-workspace.yaml
+  .gitignore
+  .eslintrc.json
+  prettier.config.js
+
+
+HEADER SPECIFICATION (EXACT)
+-----------------------------
+Layout: [Logo Left] ---- [Nav Center] ---- [Actions Right]
+
+LEFT SECTION:
+  - VizTR text logo
+  - Font: Playfair Display, weight 700
+  - Font size: 1.5rem
+  - Links to /
+  - Color: current theme text color
+
+CENTER SECTION (Navigation Links):
+  - Home -> /
+  - Studio -> Dropdown with 3 items:
+      * Exterior Visualization -> /studio/exterior
+      * Interior Visualization -> /studio/interior
+      * Walkthrough Animation -> /studio/walkthrough
+  - XR World -> Dropdown with 5 items:
+      * WebXR -> /xr-world/webxr
+      * WebAR -> /xr-world/webar
+      * Virtual Reality -> /xr-world/virtual-reality
+      * Virtual Tour -> /xr-world/virtual-tour
+      * Pixel Streaming -> /xr-world/pixel-streaming
+  - Contact -> /contact
+  - Font: Inter, weight 500, size 0.9rem, letter-spacing 0.05em
+  - Active page: bottom border 2px solid primary color
+
+RIGHT SECTION:
+  - Theme toggle (sun/moon/monitor icons from Lucide React)
+  - Cycles: Light -> Dark -> System -> Light
+  - Login icon (User icon from Lucide React) -> /client-access
+  - If logged in: show user avatar instead of icon
+
+BEHAVIOR:
+  - Sticky, top: 0
+  - Background: backdrop-blur(16px), bg-white/80 light, bg-black/80 dark
+  - Border bottom: 1px solid theme border
+  - Z-index: 50, height: 64px
+  - Max width: 1280px centered, padding: 0 1.5rem
+
+MOBILE (below 768px):
+  - Center nav hidden, hamburger icon appears
+  - Opens full-screen overlay with 4 nav items
+  - Dropdowns expand inline
+  - Theme toggle and login remain visible
+
+DROPDOWN BEHAVIOR:
+  - Desktop: appears on hover below nav item
+  - Position: absolute, top: 100%, left: 0
+  - Background: theme card background
+  - Border: 1px solid theme border
+  - Border radius: 12px
+  - Shadow: theme shadow
+  - Z-index: 100
+  - Items: padding 0.75rem 1rem, hover background change
+  - Animation: fade-in + slide-down 150ms
+  - Mobile: click to toggle, no hover
+
+
+FOOTER SPECIFICATION
+--------------------
+Layout: 4 columns on desktop, stacked on mobile
+
+Column 1: VizTR logo + short brand description (2 lines max)
+
+Column 2: Studio heading with links:
+  - Exterior Visualization
+  - Interior Visualization
+  - Walkthrough Animation
+
+Column 3: XR World heading with links:
+  - WebXR
+  - WebAR
+  - Virtual Reality
+  - Virtual Tour
+  - Pixel Streaming
+
+Column 4: Connect heading with:
+  - Email: hello@viztr.com
+  - Phone: +1 (555) 123-4567
+  - Address: 123 Visualization Ave, Tech City
+  - Social icons row (Instagram, LinkedIn, Twitter/X, YouTube)
+
+Bottom bar:
+  - Copyright: 2026 VizTR. All rights reserved.
+  - Privacy Policy link -> /privacy-policy
+  - Terms link -> /terms-conditions
+
+Style:
+  - Background: theme secondary background
+  - Border top: 1px solid theme border
+  - Padding: 4rem top, 2rem bottom
+  - Max width: 1280px centered
+
+
+THEME ENGINE
+------------
+Implement Light/Dark/System mode:
+
+1. Create theme provider using next-themes
+2. Store preference in localStorage key viztr-theme
+3. Read on mount in layout.tsx
+4. Apply class to html element: light or dark
+5. System mode: detect prefers-color-scheme
+
+CSS Variables in globals.css:
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #0a0a0a;
+    --text-secondary: #666666;
+    --border: #e5e7eb;
+    --primary: #1a1a2e;
+    --primary-hover: #16213e;
+    --accent: #e94560;
+    --accent-hover: #c73e54;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --border: #2a2a2a;
+    --primary: #e94560;
+    --primary-hover: #c73e54;
+    --accent: #e94560;
+    --accent-hover: #c73e54;
+    --glass-bg: rgba(10, 10, 10, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  }
+
+
+DESIGN TOKENS
+-------------
+Border radius: 12px (default), 16px (cards), 20px (modals), 9999px (pills)
+Glass effect: backdrop-blur(16px), glass-bg, glass-border
+Spacing scale: 4px base unit (0.25rem increments)
+Max content width: 1280px
+Section padding: 6rem vertical, 1.5rem horizontal
+
+
+GLOBAL STYLES (globals.css)
+---------------------------
+Use Tailwind CSS 4.0+ CSS-first config:
+
+@import tailwindcss;
+
+@theme {
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --font-display: Playfair Display, serif;
+  --font-body: Inter, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+
+404 PAGE
+--------
+- Centered layout
+- Large 404 text (6rem, bold)
+- Page not found message
+- Return Home button linking to /
+- Dark/moody background matching theme
+
+
+PLACEHOLDER HOMEPAGE
+--------------------
+- Renders header and footer
+- Center content: VizTR — Coming Soon with basic hero text
+- This will be replaced in Prompt 02
+
+
+PACKAGE.JSON DEPENDENCIES (apps/web)
+-------------------------------------
+{
+  dependencies: {
+    next: 16.2.0,
+    react: ^19.0.0,
+    react-dom: ^19.0.0,
+    @tanstack/react-query: ^5.56.0,
+    zustand: ^4.5.0,
+    next-themes: ^0.4.0,
+    lucide-react: ^0.400.0,
+    clsx: ^2.1.0,
+    tailwind-merge: ^2.5.0
+  },
+  devDependencies: {
+    typescript: ^5.5.0,
+    @types/node: ^22.0.0,
+    @types/react: ^19.0.0,
+    @types/react-dom: ^19.0.0,
+    tailwindcss: ^4.0.0,
+    @tailwindcss/postcss: ^4.0.0,
+    postcss: ^8.4.0,
+    eslint: ^9.0.0,
+    eslint-config-next: 16.2.0,
+    prettier: ^3.3.0
+  }
+}
+
+
+VERIFICATION
+------------
+After generating all files, verify:
+
+1. Run: pnpm install && pnpm dev
+2. Open http://localhost:3000
+3. Check header renders with logo left, nav center, actions right
+4. Click Studio — dropdown shows Exterior, Interior, Walkthrough
+5. Click XR World — dropdown shows WebXR, WebAR, Virtual Reality, Virtual Tour, Pixel Streaming
+6. Click theme toggle — cycles Light, Dark, System
+7. Theme persists after page reload
+8. Mobile view (375px) — hamburger menu works
+9. Footer renders with 4 columns
+10. 404 page shows at /nonexistent-page
+11. No console errors
+12. TypeScript compiles without errors
+
+Push to GitHub when verification passes.
+
+
+END OF PROMPT 01

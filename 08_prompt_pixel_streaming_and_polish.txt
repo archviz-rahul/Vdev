@@ -1,0 +1,217 @@
+VIZTR PROMPT 08 — PIXEL STREAMING AND POLISH
+==============================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+
+SYSTEM: You are building VizTR. Prompt 08 of 10. Build Pixel Streaming module, VR mode, SEO system, performance optimization.
+
+
+ASSIGNMENT
+1. Pixel Streaming service page and session module
+2. WebXR VR mode with controllers
+3. Complete SEO system
+4. Performance optimization
+5. Security and accessibility
+
+
+PIXEL STREAMING MODULE
+----------------------
+File: apps/web/src/components/xr/PixelStreaming.tsx
+
+Service page: /xr-world/pixel-streaming
+  - Hero with "Flagship" badge
+  - Cloud-rendered experience explanation
+  - "No heavy hardware" emphasis
+  - Technical requirements section
+  - "Launch Demo" CTA (guarded)
+
+Session management:
+  - Start session button (requests GPU allocation)
+  - Stop session button
+  - Session status indicator (connecting/active/ended)
+  - Fallback message if streaming not configured
+
+Admin controls at /admin/streaming:
+  - GPU usage monitoring placeholder
+  - Active sessions list
+  - Session start/stop
+  - Access control (approve demo requests)
+  - Usage analytics placeholder
+
+Backend structure:
+  - API route: /api/pixel-streaming/start
+  - API route: /api/pixel-streaming/stop
+  - API route: /api/pixel-streaming/status
+  - Placeholder WebSocket connection for stream
+
+Fallback: if streaming service not configured, show "Demo coming soon" message
+
+
+WEBXR VR MODE
+--------------
+File: apps/web/src/components/xr/VRControls.tsx
+
+VR features:
+  - WebXR immersive-vr session
+  - Controller input (trigger for select, grip for teleport)
+  - Hand tracking support where available
+  - Reticle for aim-based teleport
+  - Teleport rings on ground
+  - Smooth locomotion option
+  - Comfort vignette during movement
+
+VR UI:
+  - Floating menu in VR space
+  - Scene selector
+  - Hotspot interaction via controller ray
+  - Annotation display in VR
+  - Exit VR button
+
+Performance targets:
+  - 90 FPS in VR mode
+  - Stereo rendering
+  - Foveated rendering if supported
+
+
+SEO SYSTEM
+----------
+File: apps/web/src/components/seo/SEOHead.tsx
+
+Per-page SEO:
+  - Meta title (60 chars max)
+  - Meta description (160 chars max)
+  - URL slug control
+  - Canonical tag
+  - OpenGraph fields (title, description, image, type, url)
+  - Twitter card fields (card, title, description, image)
+
+Schema markup:
+  - LocalBusiness schema for homepage
+  - Service schema for service pages
+  - Article schema for blog posts
+  - FAQ schema for FAQ sections
+  - BreadcrumbList schema
+
+Auto-generation:
+  - XML sitemap at /sitemap.xml
+  - robots.txt at /robots.txt
+  - Auto-generate OG images from page content (placeholder)
+
+SEO admin at /admin/seo:
+  - Per-page meta editor
+  - Redirect manager
+  - Alt text management for images
+  - SEO score analysis placeholder
+
+SEO fields in Prisma: title, description, ogImage, canonical, noIndex for all content models
+
+
+PERFORMANCE OPTIMIZATION
+-------------------------
+CDN and caching:
+  - Cloudflare CDN for all static assets
+  - Edge caching for pages
+  - Redis caching for API responses
+  - Cache headers: s-maxage=3600, stale-while-revalidate
+
+Image optimization:
+  - next/image for all images
+  - WebP and AVIF formats
+  - Responsive srcset
+  - Lazy loading for below-fold images
+  - Priority loading for hero images
+
+3D/XR optimization:
+  - Dynamic imports for Babylon.js and Marzipano
+  - Code splitting by route
+  - Preload critical XR assets
+  - LOD for 3D models
+  - Progressive loading for panoramas
+
+Font optimization:
+  - next/font self-hosted
+  - Subset optimization
+  - Font display: swap
+  - Preload critical fonts
+
+Bundle optimization:
+  - Tree shaking enabled
+  - Minification
+  - Compression (gzip/brotli)
+  - Analyze bundle size
+
+Performance targets:
+  - Lighthouse score: 90+
+  - LCP: under 2.5s
+  - FID: under 100ms
+  - CLS: under 0.1
+  - API response: under 200ms p95
+  - Desktop load: under 2s
+  - Mobile load: under 3s
+
+
+SECURITY
+--------
+  - Role-based access control (from Prompt 05)
+  - Protected routes middleware
+  - Input validation with zod
+  - CSRF protection on forms
+  - XSS protection (React auto-escapes)
+  - SQL injection prevention (Prisma parameterized)
+  - Rate limiting on API routes
+  - Secure file upload validation
+  - Secure session handling
+  - Audit logs for admin actions
+
+
+ACCESSIBILITY
+-------------
+  - WCAG 2.1 AA compliance target
+  - Keyboard navigation for all interactive elements
+  - Focus states (visible outline)
+  - Alt text for all images
+  - ARIA labels on interactive elements
+  - Sufficient color contrast (4.5:1 minimum)
+  - Responsive typography
+  - Reduced motion support (prefers-reduced-motion)
+  - Skip to main content link
+  - Form labels and error announcements
+  - Semantic HTML (headings, landmarks, lists)
+
+
+ANALYTICS EVENTS
+----------------
+Placeholder event tracking for:
+  - CTA clicks
+  - Form submissions
+  - Portfolio views
+  - XR demo launches
+  - Showreel plays
+  - Download clicks
+  - Page views
+  - Newsletter signups
+
+File: apps/web/src/lib/analytics.ts
+Function: trackEvent(name, properties)
+Currently logs to console, ready for integration
+
+
+VERIFICATION
+1. Pixel Streaming page renders with flagship badge
+2. Launch Demo CTA shows request form or streaming session
+3. VR mode activates with WebXR session
+4. VR controllers respond to input
+5. SEO meta tags appear on all pages
+6. Schema markup validates (use Google Rich Results Test)
+7. Sitemap generates at /sitemap.xml
+8. robots.txt accessible at /robots.txt
+9. Lighthouse score 90+ on homepage
+10. All images use next/image with lazy loading
+11. Fonts load without CLS
+12. Keyboard navigation works everywhere
+13. Focus states visible
+14. Alt text present on all images
+15. No console errors
+16. TypeScript compiles
+
+END OF PROMPT 08

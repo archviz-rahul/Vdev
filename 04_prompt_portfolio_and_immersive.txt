@@ -1,0 +1,261 @@
+﻿VIZTR PROMPT 04 — PORTFOLIO AND IMMERSIVE VIEWERS
+===================================================
+
+PASTE THIS ENTIRE PROMPT INTO GOOGLE AI STUDIO
+================================================
+
+SYSTEM: You are building the VizTR Architecture Visualization Studio + XR World Platform. This is Prompt 04 of 10. You have completed foundation, homepage, and all 21 pages. Now build the portfolio system and immersive media viewers.
+
+
+ASSIGNMENT
+----------
+1. Build complete portfolio system with filtering and detail pages
+2. Build Immersive Gallery Viewer (image/video navigation engine)
+3. Build 360 Panoramic Viewer (Marzipano-based)
+4. Build WebXR 3D Model Viewer (Babylon.js-based)
+
+
+PORTFOLIO SYSTEM
+----------------
+File: apps/web/src/components/portfolio/PortfolioGrid.tsx
+
+Portfolio filtering:
+  - Filter buttons: All, Exterior, Interior, Animation, XR, 360, Walkthrough
+  - Active filter: filled background, others outlined
+  - Click to filter, animation fade transition
+  - All shows everything
+
+Project card:
+  - Thumbnail image (aspect-ratio 4/3, object-cover)
+  - Hover: dark overlay with View Project text
+  - Title below image (Inter, 1rem, weight 600)
+  - Category tag (small pill badge)
+  - Optional: location or client name
+  - 360 badge if panoramic content exists
+  - Video badge if video content exists
+
+Grid layout:
+  - Desktop: 3 columns, gap 1.5rem
+  - Tablet: 2 columns
+  - Mobile: 1 column
+  - Max width: 1280px centered
+
+Portfolio detail page: /portfolio/[id]
+  - Project title
+  - Featured image or video
+  - Gallery image grid
+  - Category and tags
+  - Client name and location
+  - Short description
+  - Long description (rich text)
+  - Related projects (3 max)
+  - Enquiry CTA: Enquire About This Project -> /contact
+
+
+IMMERSIVE GALLERY VIEWER
+-------------------------
+File: apps/web/src/components/viewers/GalleryViewer.tsx
+
+This is a universal image and video navigation engine used across portfolio and project pages.
+
+Features:
+  - Keyboard navigation: left/right arrows for prev/next, up/down for scroll
+  - Mouse scroll between images
+  - Zoom in (button or scroll wheel)
+  - Zoom out (button or scroll wheel)
+  - Drag-to-pan when zoomed (grab cursor)
+  - Fullscreen immersive mode (button or F key)
+  - Touch pinch zoom on mobile
+  - Swipe navigation on mobile (left/right)
+  - Close button (X icon, top right)
+  - Thumbnail strip at bottom (scrollable)
+  - Counter showing current position: 3 / 12
+  - Video support (play/pause in viewer)
+  - 360 support where applicable (opens panorama viewer)
+
+State management:
+  - currentIndex: number
+  - isZoomed: boolean
+  - zoomLevel: number (1x to 5x)
+  - isFullscreen: boolean
+  - panOffset: { x: number, y: number }
+
+Style:
+  - Background: black/95
+  - Content: centered, max-width 90vw, max-height 85vh
+  - Controls: glass effect, positioned absolute
+  - Thumbnails: 60px height, horizontal scroll, active border
+  - Transitions: fade 200ms
+
+
+360 PANORAMIC VIEWER
+--------------------
+File: apps/web/src/components/viewers/PanoramaViewer.tsx
+
+Uses Marzipano library for equirectangular panorama rendering.
+
+Setup:
+  - Install: pnpm add marzipano
+  - Import Marzipano in a dynamic import (no SSR)
+  - Create viewer with Marzipano.Viewer element
+
+Features:
+  - 360-degree equirectangular image display
+  - Drag to rotate (mouse and touch)
+  - Gyroscope support on mobile (toggle button)
+  - Hotspot markers (clickable, positioned in 3D space)
+  - Fullscreen panorama mode
+  - Smooth inertia when dragging
+
+Hotspot component: PanoramaHotspot.tsx
+  - Position: { yaw: number, pitch: number }
+  - Action: teleport | open_info | play_media | external
+  - Target: URL or scene ID
+  - Style: small circle icon, pulse animation, tooltip on hover
+  - Click: executes action (opens info panel, navigates, plays media)
+
+Info panel: AnnotationPanel.tsx
+  - Glass card, positioned near hotspot
+  - Title and description text
+  - Close button
+  - Click outside to close
+  - Only one open at a time
+
+Admin controls for 360:
+  - Upload panoramic image (equirectangular format)
+  - Auto-detect equirectangular format (aspect ratio 2:1)
+  - Add hotspot: title, link/action, position (click to place)
+  - Assign panorama to project
+  - Enable/disable gyroscope
+  - Set default view (initial yaw/pitch/zoom)
+  - Fullscreen toggle
+
+
+WEBXR 3D MODEL VIEWER
+----------------------
+File: apps/web/src/components/viewers/ModelViewer.tsx
+
+Uses Babylon.js 8+ for 3D model rendering.
+
+Setup:
+  - Install: pnpm add @babylonjs/core @babylonjs/loaders
+  - Dynamic import (no SSR)
+  - Lazy load Babylon.js engine
+
+Features:
+  - Load GLB and GLTF formats
+  - Orbit controls (rotate around model)
+  - Pan controls (shift+drag)
+  - Zoom controls (scroll wheel)
+  - Real-time rendering at 60fps
+  - AR mode button (WebXR AR session) where supported
+  - VR mode button (WebXR VR session) where supported
+  - Fullscreen mode
+  - Loading indicator (spinner)
+  - Error state for unsupported devices
+
+Babylon.js setup:
+  - Create Engine instance
+  - Create Scene with lighting (hemispheric + directional)
+  - Load mesh from GLB/GLTF URL
+  - Attach ArcRotateCamera with orbit controls
+  - Enable environment reflections
+  - Set backgroundColor from theme
+
+AR/VR buttons:
+  - Check navigator.xr availability
+  - If supported: show AR/VR button
+  - If not supported: hide button or show Not supported on this device
+  - AR: request immersive-ar session
+  - VR: request immersive-vr session
+
+Loading state:
+  - Show spinner overlay while model loads
+  - Progress indicator if available
+  - Hide when model is ready
+
+Error state:
+  - If model fails to load: show error message
+  - If WebXR not supported: show info message
+  - Fallback: show static preview image
+
+
+3D MODEL MANAGER (Admin)
+-------------------------
+File: apps/web/src/components/admin/ModelManager.tsx
+
+Admin must be able to:
+  - Upload 3D models (GLB, GLTF)
+  - Validate file format and size (max 50MB)
+  - Store models in Cloudflare R2
+  - Assign model to project
+  - Enable/disable WebXR per project
+  - Enable/disable AR mode
+  - Enable/disable VR mode
+  - Set model preview image
+  - Add model title and description
+  - Track storage usage
+
+
+DATA STRUCTURES
+---------------
+export interface PortfolioProject {
+  id: string;
+  title: string;
+  slug: string;
+  featuredImage: string;
+  galleryImages: string[];
+  video?: string;
+  panorama?: string;
+  model3d?: string;
+  webxrLink?: string;
+  category: 'exterior' | 'interior' | 'animation' | 'xr' | '360' | 'walkthrough';
+  tags: string[];
+  clientName?: string;
+  location?: string;
+  shortDescription: string;
+  longDescription: string;
+  featured: boolean;
+  seo: SEOFields;
+}
+
+export interface Hotspot {
+  id: string;
+  yaw: number;
+  pitch: number;
+  action: 'teleport' | 'open_info' | 'play_media' | 'external';
+  target: string;
+  title: string;
+}
+
+export interface Annotation {
+  id: string;
+  text: string;
+  hotspotId: string;
+}
+
+
+VERIFICATION
+------------
+1. Portfolio page shows all projects with correct filters
+2. Clicking filter shows correct subset
+3. Clicking project card opens detail page
+4. Gallery viewer opens on image click
+5. Gallery keyboard navigation works (left/right arrows)
+6. Gallery zoom in/out works
+7. Gallery fullscreen mode works
+8. Gallery touch swipe works on mobile
+9. 360 viewer loads Marzipano and renders panorama
+10. 360 drag to rotate works
+11. 360 hotspots are clickable
+12. 360 info panels open and close
+13. 3D viewer loads GLB model
+14. 3D orbit/pan/zoom controls work
+15. 3D AR/VR buttons appear when supported
+16. No console errors
+17. TypeScript compiles without errors
+
+Push to GitHub when verification passes.
+
+
+END OF PROMPT 04
