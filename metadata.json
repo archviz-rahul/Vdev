@@ -1,0 +1,6 @@
+{
+  "name": "VizTR Studio",
+  "description": "Architecture Visualization Studio + XR World Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
