@@ -1,0 +1,43 @@
+{
+  "name": "@viztr/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^9.22.1",
+    "@babylonjs/loaders": "^9.22.1",
+    "@tanstack/react-query": "^5.56.0",
+    "@viztr/types": "workspace:*",
+    "@viztr/ui": "workspace:*",
+    "@viztr/utils": "workspace:*",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.400.0",
+    "marzipano": "^0.10.2",
+    "next": "16.2.0",
+    "next-themes": "^0.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.5.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@tanstack/react-query-devtools": "^5.101.4",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.2.0",
+    "postcss": "^8.4.0",
+    "prettier": "^3.3.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.5.0"
+  }
+}
