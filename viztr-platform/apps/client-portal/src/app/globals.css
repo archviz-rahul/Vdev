@@ -3,6 +3,12 @@
 @theme {
   --color-primary: var(--primary);
   --color-accent: var(--accent);
+  --color-background: var(--bg-primary);
+  --color-card: var(--bg-card);
+  --color-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
   --font-display: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
 }

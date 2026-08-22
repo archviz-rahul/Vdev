@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { TrackProjectForm } from './TrackProjectForm'
+import { ProjectTracker } from '@/components/tracking/ProjectTracker'
 
 export const metadata: Metadata = {
   title: 'Track Your Project',
@@ -19,7 +19,7 @@ export default function TrackProjectPage() {
             <h1 className="font-display font-bold text-3xl md:text-4xl text-text-primary mb-4">Track Your Project</h1>
             <p className="text-text-secondary text-lg">Real-time updates on your project status</p>
           </div>
-          <TrackProjectForm />
+          <ProjectTracker />
         </div>
       </main>
       <Footer />
