@@ -15,10 +15,14 @@
     "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
-    "turbo": "^2.0.0",
-    "prettier": "^3.3.0",
     "eslint": "^9.0.0",
+    "prettier": "^3.3.0",
+    "turbo": "^2.0.0",
     "typescript": "^5.5.0"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@9.0.0",
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.11.3",
+    "next-auth": "5.0.0-beta.32"
+  }
 }

@@ -1,10 +1,7 @@
-import type { Metadata } from 'next'
-import './globals.css'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Admin Dashboard | VizTR',
-  description: 'VizTR Admin Dashboard',
-}
+import { AdminSidebar } from '@/components/AdminSidebar'
+import { AdminTopbar } from '@/components/AdminTopbar'
 
 export default function AdminLayout({
   children,
@@ -12,8 +9,12 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <div className="min-h-screen bg-background">
+      <AdminSidebar />
+      <div className="pl-[260px] transition-all duration-300">
+        <AdminTopbar />
+        <main className="p-6">{children}</main>
+      </div>
+    </div>
   )
 }

@@ -1,6 +1,3 @@
-// Prisma Schema for VizTR Platform
-// This is a placeholder - full schema will be added in Prompt 05
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,24 +7,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Placeholder models - full implementation in Prompt 05
-model User {
-  id            String   @id @default(cuid())
-  email         String   @unique
-  name          String?
-  password      String
-  role          Role     @default(USER)
-  avatar        String?
-  emailVerified DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
+// ─── Auth ───────────────────────────────────────────────
 
 enum Role {
   SUPER_ADMIN
   ADMIN
   USER
   CLIENT
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  password      String?
+  role          Role           @default(USER)
+  avatar        String?
+  emailVerified DateTime?
+  accounts      Account[]
+  sessions      Session[]
+  projects      Project[]      @relation("ProjectMembers")
+  blogPosts     BlogPost[]
+  mediaAssets   MediaAsset[]
+  formSubmissions FormSubmission[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
@@ -44,4 +66,435 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// ─── Projects ───────────────────────────────────────────
+
+enum ProjectStatus {
+  BRIEF_RECEIVED
+  IN_PROPOSAL
+  CONTRACTED
+  IN_PROGRESS
+  IN_REVIEW
+  COMPLETED
+}
+
+enum ProjectVisibility {
+  PUBLIC
+  PRIVATE
+  ARCHIVED
+}
+
+model Project {
+  id              String            @id @default(cuid())
+  name            String
+  slug            String            @unique
+  status          ProjectStatus     @default(BRIEF_RECEIVED)
+  progress        Int               @default(0)
+  serviceCategory String?
+  clientName      String?
+  clientEmail     String?
+  startDate       DateTime?
+  deadline        DateTime?
+  completedAt     DateTime?
+  description     String?           @db.Text
+  visibility      ProjectVisibility @default(PRIVATE)
+  members         User[]            @relation("ProjectMembers")
+  assets          ProjectAsset[]
+  updates         ProjectUpdate[]
+  models3d        Model3D[]
+  panoramas       Panorama[]
+  xrLinks         XRLink[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([status])
+  @@index([slug])
+}
+
+model ProjectAsset {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name      String
+  url       String
+  type      String
+  size      Int?
+  createdAt DateTime @default(now())
+}
+
+model ProjectUpdate {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title     String
+  content   String   @db.Text
+  progress  Int?
+  createdAt DateTime @default(now())
+}
+
+// ─── Services ───────────────────────────────────────────
+
+enum ServiceCategory {
+  STUDIO
+  XR_WORLD
+}
+
+model Service {
+  id          String          @id @default(cuid())
+  name        String
+  slug        String          @unique
+  category    ServiceCategory
+  description String?         @db.Text
+  icon        String?
+  image       String?
+  visible     Boolean         @default(true)
+  order       Int             @default(0)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+// ─── Portfolio ──────────────────────────────────────────
+
+enum PortfolioCategory {
+  EXTERIOR
+  INTERIOR
+  ANIMATION
+  XR
+  TOUR_360
+  WALKTHROUGH
+}
+
+model PortfolioItem {
+  id               String            @id @default(cuid())
+  title            String
+  slug             String            @unique
+  featuredImage    String
+  galleryImages    String[]
+  video            String?
+  panorama         String?
+  model3d          String?
+  webxrLink        String?
+  category         PortfolioCategory
+  tags             String[]
+  clientName       String?
+  location         String?
+  shortDescription String
+  longDescription  String            @db.Text
+  featured         Boolean           @default(false)
+  metaTitle        String?
+  metaDescription  String?
+  ogImage          String?
+  canonical        String?
+  noIndex          Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([category])
+  @@index([featured])
+  @@index([slug])
+}
+
+// ─── Blog ───────────────────────────────────────────────
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model BlogPost {
+  id             String      @id @default(cuid())
+  title          String
+  slug           String      @unique
+  content        String      @db.Text
+  excerpt        String?
+  featuredImage  String?
+  authorId       String
+  author         User        @relation(fields: [authorId], references: [id])
+  category       String?
+  tags           String[]
+  status         PostStatus  @default(DRAFT)
+  publishedAt    DateTime?
+  metaTitle      String?
+  metaDescription String?
+  ogImage        String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([status])
+  @@index([slug])
+}
+
+// ─── Media ──────────────────────────────────────────────
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+  MODEL_3D
+  AUDIO
+}
+
+model MediaAsset {
+  id         String    @id @default(cuid())
+  name       String
+  type       MediaType
+  url        String
+  size       Int?
+  altText    String?
+  folder     String?
+  uploadedBy String?
+  uploader   User?     @relation(fields: [uploadedBy], references: [id])
+  createdAt  DateTime  @default(now())
+}
+
+// ─── 3D & XR ───────────────────────────────────────────
+
+model Model3D {
+  id           String   @id @default(cuid())
+  name         String
+  url          String
+  format       String?
+  size         Int?
+  projectId    String?
+  project      Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  previewImage String?
+  createdAt    DateTime @default(now())
+}
+
+model Panorama {
+  id                String   @id @default(cuid())
+  name              String
+  imageUrl          String
+  hotspots          Json     @default("[]")
+  annotations       Json     @default("[]")
+  projectId         String?
+  project           Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  gyroscopeEnabled  Boolean  @default(true)
+  createdAt         DateTime @default(now())
+}
+
+model XRLink {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  type      String
+  url       String
+  label     String?
+  createdAt DateTime @default(now())
+}
+
+model PixelStreamSession {
+  id           String   @id @default(cuid())
+  userId       String?
+  instanceUrl  String
+  status       String   @default("pending")
+  startedAt    DateTime @default(now())
+  endedAt      DateTime?
+  duration     Int?
+}
+
+// ─── Content ────────────────────────────────────────────
+
+model Category {
+  id    String @id @default(cuid())
+  name  String @unique
+  slug  String @unique
+  type  String
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  slug  String @unique
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  company     String?
+  quote       String   @db.Text
+  avatar      String?
+  rating      Int?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model FAQ {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String  @db.Text
+  category  String?
+  order     Int     @default(0)
+  visible   Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ─── Forms & Bookings ───────────────────────────────────
+
+enum FormStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model FormSubmission {
+  id        String     @id @default(cuid())
+  type      String
+  data      Json
+  status    FormStatus @default(UNREAD)
+  readAt    DateTime?
+  userId    String?
+  user      User?      @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
+}
+
+model Booking {
+  id              String        @id @default(cuid())
+  name            String
+  email           String
+  phone           String?
+  company         String?
+  service         String
+  preferredDate   DateTime?
+  preferredTime   String?
+  details         String?       @db.Text
+  status          BookingStatus @default(PENDING)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String
+  phone     String?
+  source    String?
+  message   String?  @db.Text
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+// ─── Site Management ────────────────────────────────────
+
+model NavigationMenu {
+  id       String @id @default(cuid())
+  name     String
+  slug     String @unique
+  items    Json   @default("[]")
+  visible  Boolean @default(true)
+  order    Int    @default(0)
+}
+
+model Theme {
+  id          String @id @default(cuid())
+  name        String @unique
+  isActive    Boolean @default(false)
+  colors      Json
+  fonts       Json
+  spacing     Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DesignSettings {
+  id         String @id @default(cuid())
+  key        String @unique
+  value      Json
+  updatedAt  DateTime @updatedAt
+}
+
+model SEOSettings {
+  id              String @id @default(cuid())
+  page            String @unique
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  canonical       String?
+  noIndex         Boolean @default(false)
+  updatedAt       DateTime @updatedAt
+}
+
+model SiteSettings {
+  id        String @id @default(cuid())
+  key       String @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Analytics & System ─────────────────────────────────
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  event     String
+  page      String?
+  userId    String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([event])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  entity    String
+  entityId  String?
+  details   Json?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([action])
+  @@index([entity])
+  @@index([createdAt])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+}
+
+// ─── Clients & Pricing ──────────────────────────────────
+
+model Client {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  company       String?
+  phone         String?
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model PricingPlan {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  price       Float
+  currency    String   @default("USD")
+  interval    String   @default("one-time")
+  features    String[]
+  visible     Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
